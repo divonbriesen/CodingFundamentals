@@ -15,9 +15,29 @@ The goal is to create a "tester" with random wording changes to instill the CONC
 Design should allow for growth in the future to cover if/else statements and for loops, and perhaps other languages.
 
 =========================================
+Sample run:
+
+Q: Declare a variable x to hold an int and set it to 3566:
+int x = 3566;  
+Correct!  1/20
+
+Q: Initialize an existing variable c to be "Kevin":
+c = "Kevin";
+Correct! 2/20
+
+Q: Create and set a value to the variable accountNumber using the integer 235642:
+Integer accountNumber = new Integer(235642);
+My, aren't you fancy, using the wrapper class for a primitive. OK then. 3/20;
+
+Q: You need a variable to refer to a Student object. Call it student.
+Student student = new Student();
+Sorry, the answer is Student student; You only needed to create the variable, not the object itself.
+Starting over! 0/20
 
 
 
+The more variations to phrasing the better, but in order to be flexible, there need to be some limitations and the phrasing must be technically accurate at all times. 
+===================================================================
 
 Consider this statement:
 
