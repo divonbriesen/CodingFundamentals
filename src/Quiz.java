@@ -22,5 +22,4 @@ public class Quiz
     {
         return listOfQuestions;
     }
-
 }

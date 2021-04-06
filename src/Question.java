@@ -7,7 +7,7 @@ public class Question
     private String value;
     private String answer;
     private String question;
-    private String tags;
+    // private String tags;
     Random randomizer = new Random();
 
     public Question()

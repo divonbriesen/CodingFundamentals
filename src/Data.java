@@ -18,15 +18,11 @@ public class Data
 
     public static final String PAGE1 = "HOME\n1. Start quiz\n2. Print quiz to file\n3. Options\n4. Exit";
     public static String PAGE13 = "OPTIONS\n1. Back to home\n2. Change number of questions\n3. Change difficulty\n4. Print answer key with quiz";
-//    public static final String PAGE3 = "page 1-3-2 change num of questions";
-    public static final String PAGE4 = "page 1-2-3 difficulty";
     public static final HashMap<String, String> PAGES = new HashMap<>();
     static
     {
         PAGES.put("1",PAGE1);
         PAGES.put("13",PAGE13);
-//        PAGES.put("132",PAGE3);
-        PAGES.put("133",PAGE4);
     }
 
 }

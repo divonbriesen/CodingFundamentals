@@ -17,7 +17,6 @@ public class QuizConsole
 
             String attempt = scan.nextLine();
 
-
             if (compareAnswer(question, attempt))
             {
                 System.out.println("Your answer was:    " + attempt);
@@ -48,7 +47,6 @@ public class QuizConsole
         // if the question does require a type, then the answer will be compared  in the format of {type, restOfAnswer}
         // to ensure that there is at least one space between the type and the variable name
         String[] answerSplitAtSpaces = answer.split(" ");
-
         StringBuilder answerWithNoSpaces = new StringBuilder();
         for (int i = 1; i < answerSplitAtSpaces.length; i++)
         {

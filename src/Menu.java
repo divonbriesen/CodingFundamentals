@@ -9,7 +9,6 @@ public class Menu
     private int numOfQuestions = 10;
     private int difficultyLevel;
     private boolean printAnswers = false;
-    private Quiz quiz = new Quiz(10); // default is 10
 
     public void displayMenu(String pageID)
     {
