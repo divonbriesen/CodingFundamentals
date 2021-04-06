@@ -15,7 +15,7 @@ public class Menu
         clearConsole();
     // STEP 1: check for special cases
         checkIfPageIsMethod(pageID);
-        // If the page does not exist the user will be brought back to the screen they entered it from
+        // If the page doesnt exist the user will be brought back to the screen they entered it from
         if (Data.PAGES.get(pageID) == null)
         {
             System.out.println("Invalid option");

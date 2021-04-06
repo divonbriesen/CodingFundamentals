@@ -15,7 +15,6 @@ public class Data
                                                 "'7'", "'8'", "'9'", "'0'", "'-'", "'_'", "'+'", "'='", "'~'", "'A'", "'B'", "'C'", "'D'",
                                                 "'E'", "'F'", "'G'", "'H'", "'I'", "'J'", "'K'", "'L'", "'M'", "'N'", "'O'", "'P'", "'Q'",
                                                 "'R'", "'S'", "'T'", "'U'", "'V'", "'W'", "'X'", "'Y'", "'Z'"};
-
     public static final String PAGE1 = "HOME\n1. Start quiz\n2. Print quiz to file\n3. Options\n4. Exit";
     public static String PAGE13 = "OPTIONS\n1. Back to home\n2. Change number of questions\n3. Change difficulty\n4. Print answer key with quiz";
     public static final HashMap<String, String> PAGES = new HashMap<>();

@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class Quiz
 {
-
     private ArrayList<Question> listOfQuestions;
 
     public Quiz(int numOfQuestions)

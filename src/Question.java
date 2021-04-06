@@ -106,33 +106,4 @@ public class Question
     {
         return question;
     }
-/*
-    public boolean compareAnswer(String answerAttempt)
-    {
-       String[] answerAttemptArray = formatAnswer(answerAttempt);
-       String[] correctAnswerArray = formatAnswer(answer);
-
-       return Arrays.equals(answerAttemptArray, correctAnswerArray);
-    }
-    public String[] formatAnswer(String answer)
-    {
-        // if the question doesn't require a type then the answer will be compared with all spaces removed
-        // if the question does require a type, then the answer will be compared  in the format of {type, restOfAnswer}
-        // to ensure that there is at least one space between the type and the variable name
-        String[] answerSplitAtSpaces = answer.split(" ");
-
-        String answerWithNoSpaces = "";
-        for (int i = 1; i < answerSplitAtSpaces.length; i++)
-        {
-            answerWithNoSpaces += answerSplitAtSpaces[i];
-        }
-
-        if (type.isEmpty())
-        {
-            return new String[] {answerSplitAtSpaces[0] + answerWithNoSpaces};
-        }
-        return new String[] {answerSplitAtSpaces[0], answerWithNoSpaces};
-    }
-*/
-
 } // end of class
