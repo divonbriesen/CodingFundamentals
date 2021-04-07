@@ -9,7 +9,6 @@ public class Quiz
         listOfQuestions = new ArrayList<>();
         generateQuestionList(numOfQuestions);
     }
-
     public void generateQuestionList(int numOfQuestions)
     {
         for (int i = 0; i < numOfQuestions; i++)

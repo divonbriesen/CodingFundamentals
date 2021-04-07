@@ -9,6 +9,7 @@ public class Menu
     private int numOfQuestions = 10;
     private int difficultyLevel;
     private boolean printAnswers = false;
+    private boolean printQuestionsToScreen = false;
 
     public void displayMenu(String pageID)
     {
@@ -27,7 +28,7 @@ public class Menu
             {
                 System.out.println("Whoops");
             }
-            displayMenu(pageID.substring(0, pageID.length() - 1));
+            previousPage(pageID);
         }
     // STEP 2: display page
         System.out.println(Data.PAGES.get(pageID));
@@ -38,7 +39,7 @@ public class Menu
         // if the user selects 1 it will send them to the previous page
         if (input.equals("1"))
         {
-            displayMenu(pageID.substring(0,pageID.length() - 1));
+            previousPage(pageID);
         }
         // otherwise the user will get sent to the page they selected
         else
@@ -46,8 +47,8 @@ public class Menu
             displayMenu(pageID + input);
         }
     }
-
-    private void checkIfPageIsMethod(String pageID) {
+    private void checkIfPageIsMethod(String pageID)
+    {
         // This case only occurs if the user inputs 1 on the home menu, which is the option to start the quiz
         if (pageID.isEmpty())
         {
@@ -56,33 +57,59 @@ public class Menu
             displayMenu("1");
         }
         // This ID corresponds to the menu option to change the number of questions
-        if (pageID.equals("132"))
+        if (pageID.equals("142"))
         {
             promptForNumOfQuestions();
-            displayMenu(pageID.substring(0, pageID.length() - 1));
+            previousPage(pageID);
         }
         if (pageID.equals("12"))
         {
-            printQuizToFile(new Quiz(numOfQuestions));
+            printQuizToFile();
             displayMenu("1");
         }
-        if (pageID.equals("14"))
+        if (pageID.equals("15"))
         {
             System.exit(0);
         }
-        if (pageID.equals("134"))
+        if (pageID.equals("144"))
         {
             printAnswers = !printAnswers;
             System.out.printf("An answer key will %sbe printed at the bottom of your quiz", printAnswers ? "" : "not ");
             try {Thread.sleep(1000);}
-            catch (InterruptedException e) {}
-            displayMenu(pageID.substring(0,pageID.length() - 1));
+            catch (InterruptedException e) {System.out.println("Whoops something went wrong");}
+            previousPage(pageID);
+        }
+        if (pageID.equals("13"))
+        {
+            printQuestionsToScreen();
+            previousPage(pageID);
         }
     }
-    public void printQuizToFile(Quiz quiz)
+    private void printQuestionsToScreen()
+    {
+        Quiz quiz = new Quiz(numOfQuestions);
+        ArrayList<Question> listOfQuestions = quiz.getListOfQuestions();
+        for (int i = 0; i < listOfQuestions.size(); i++)
+        {
+            Question question = listOfQuestions.get(i);
+            System.out.printf("%d) %s\n\n",i + 1, question);
+        }
+        if (printAnswers)
+        {
+            System.out.println("Answer Key:");
+            for (int i = 0; i < listOfQuestions.size(); i++)
+            {
+                Question question = listOfQuestions.get(i);
+                System.out.printf("%d) %s\n",i + 1, question.getAnswer());
+            }
+        }
+        System.out.println("Press enter to return to menu...");
+        new Scanner(System.in).nextLine();
+    }
+    public void printQuizToFile()
     {
         String filename = "quiz.txt";
-        Quiz quizToPrint = new Quiz(numOfQuestions);
+        Quiz quiz = new Quiz(numOfQuestions);
         ArrayList<Question> listOfQuestions = quiz.getListOfQuestions();
         try
         {
@@ -137,7 +164,6 @@ public class Menu
             System.out.println("Whoops looks like something went wrong!");
         }
     }
-
     public void promptForNumOfQuestions()
     {
         Scanner scan = new Scanner(System.in);
@@ -178,6 +204,10 @@ public class Menu
         {
             System.out.println("Whoops looks like something went wrong!");
         }
+    }
+    public void previousPage(String pageID)
+    {
+        displayMenu(pageID.substring(0,pageID.length() - 1));
     }
 }
 
