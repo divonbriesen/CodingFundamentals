@@ -5,7 +5,8 @@ public class Quiz
     private ArrayList<Question> listOfQuestions;
     private enum QuestionType
     {
-        PRIMITIVE;
+        PRIMITIVE,
+        ARRAY;
 
         public static QuestionType getRandomQuestionType()
         {
@@ -31,6 +32,9 @@ public class Quiz
             {
                 case PRIMITIVE:
                     question = new PrimitiveQuestion();
+                    break;
+                case ARRAY:
+                    question = new ArrayQuestion();
                     break;
                 default:
                     question = new PrimitiveQuestion();
