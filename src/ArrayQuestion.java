@@ -1,13 +1,15 @@
+import java.util.Random;
+import java.util.ArrayList;
 public class ArrayQuestion implements Question
 {
-   private ArrayType datatype;
-   private String variableName;
-   private String value;
-   private int numberOfElements
-   private String answer;
-   private String question;
-   
-   public enum ArrayType
+    private ArrayType datatype;
+    private String variableName;
+    private String[] values;
+    private int numberOfElements;
+    private String answer;
+    private String question;
+    static Random randomizer = new Random();
+    public enum ArrayType
     {
         STRING("String[]"),
         INT("int[]"),
@@ -22,7 +24,7 @@ public class ArrayQuestion implements Question
         }
         public static ArrayType getRandomArrayType()
         {
-            PrimitiveType[] arrayTypes = ArrayType.values();
+            ArrayType[] arrayTypes = ArrayType.values();
             int arrayTypeIndex = randomizer.nextInt(arrayTypes.length);
             return arrayTypes[arrayTypeIndex];
             
@@ -32,33 +34,33 @@ public class ArrayQuestion implements Question
             return stringValue;
         }
     }
-   public ArrayQuestion()
-   {
+    public ArrayQuestion()
+    {
+        numberOfElements = randomizer.nextInt(5);
         datatype = ArrayType.getRandomArrayType(); // picks a random datatype from TYPES array
         variableName = getRandomItem(Data.VARIABLE_NAMES); // picks a random variable name from VARIABLE_NAMES array
       // picks a random value for the variable based on the datatype
         switch (datatype)
         {
             case STRING:
-                value = getRandomItem(Data.STRING_VALUES);
+                values = getRandomElements(Data.STRING_VALUES);
                 break;
             case CHAR:
-                value = getRandomItem(Data.CHAR_VALUES);
+                values = getRandomElements(Data.CHAR_VALUES);
                 break;
             case INT:
-                value = String.valueOf(randomizer.nextInt(1998) - 999);
+                values = generateRandomIntArray();
                 break;
             case DOUBLE:
-                value = String.valueOf((randomizer.nextInt(198) - 99) 
-                        + ((int)(randomizer.nextDouble() * 1000) / 1000.0));
+                values = generateRandomDoubleArray();
                 break;
             case BOOLEAN:
-                value = String.valueOf(randomizer.nextBoolean());
+                values = generateRandomBooleanArray();
                 break;
         }
         if (randomizer.nextInt(100) <= 33) // 10% chance you will just declare the variable with no value
         {
-            value = "";
+            values = null;
         }
         else if (randomizer.nextInt(100) <= 33) // if there is a value, 10% chance of there being no type (means you assign a value to an existing variable)
         {
@@ -67,15 +69,66 @@ public class ArrayQuestion implements Question
         answer = generateAnswer();
         question = generateQuestion();
    }
-   public String[] getRandomElements(String[] _stringArray, int numberOfElements)
-   {
-        String[] randomElements = new String[numberOfElements];
-        for (int i = 0; i < numberOfElements; i++);
+   public String generateAnswer()
+    {
+        // chooses the question/answer type based on whether or not a value or type was given
+        if (values == null)
         {
-            int indexOfRandomElement = randomizer.nextInt(_stringArray.length);
-            String randomElement = _stringArray;
+            answer = datatype + " " + variableName;
         }
-        
+        else if (datatype == null)
+        {
+            answer = variableName + " = {" + values + "}";
+        }
+        else
+        {
+            answer = datatype + " " + variableName + " = " + values;
+        }
+        answer += ";";
+
+        return answer;
+    }
+    public String[] getRandomElements(String[] arrayOfStrings)
+    {
+        String[] randomElements = new String[numberOfElements];
+        for (int i = 0; i < numberOfElements; i++)
+        {
+            randomElements[i] = getRandomItem(arrayOfStrings);
+        }
         return randomElements;
-   }
+     }
+
+    public String getRandomItem(String[] arrayOfStrings)
+    {
+        int indexOfRandomItem = randomizer.nextInt(arrayOfStrings.length);
+        return arrayOfStrings[indexOfRandomItem];
+    }
+    public String[] generateRandomIntArray()
+    {
+        String[] randomArray = new String[numberOfElements];
+        for (int i = 0; i < numberOfElements; i++)
+        {
+            randomArray[i] = String.valueOf(randomizer.nextInt(198) - 99);
+        }
+        return randomArray;
+    }
+    public String[] generateRandomBooleanArray()
+    {
+        String[] randomArray = new String[numberOfElements];
+        for (int i = 0; i < numberOfElements; i++)
+        {
+            randomArray[i] = String.valueOf(randomizer.nextBoolean());
+        }
+        return randomArray;
+    }
+    public String[] generateRandomDoubleArray()
+    {
+        String[] randomArray = new String[numberOfElements];
+        for (int i = 0; i < numberOfElements; i++)
+        {
+            randomArray[i] = String.valueOf((randomizer.nextInt(198) - 99) 
+                           + ((int)(randomizer.nextDouble() * 1000) / 1000.0));
+        }
+        return randomArray;
+    }
 }

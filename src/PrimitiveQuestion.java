@@ -69,10 +69,10 @@ public class PrimitiveQuestion implements Question
         answer = generateAnswer();
         question = generateQuestion();
     }
-    public String getRandomItem(String[] _stringArray)
+    public String getRandomItem(String[] arrayOfStrings)
     {
-        int indexOfRandomItem = randomizer.nextInt(_stringArray.length);
-        return _stringArray[indexOfRandomItem];
+        int indexOfRandomItem = randomizer.nextInt(arrayOfStrings.length);
+        return arrayOfStrings[indexOfRandomItem];
     }
     public String generateAnswer()
     {
