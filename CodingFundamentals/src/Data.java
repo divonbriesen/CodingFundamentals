@@ -22,6 +22,7 @@ public class Data
     {
         PAGES.put("1",PAGE1);
         PAGES.put("14",PAGE14);
+        int uselessVar = 0;
     }
 
 }
