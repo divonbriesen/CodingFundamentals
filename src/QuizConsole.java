@@ -6,13 +6,13 @@ public class QuizConsole
 {
     public static void startQuiz(Quiz quiz)
     {
-        ArrayList<PrimitiveQuestion> listOfQuestions = quiz.getListOfQuestions();
+        ArrayList<Question> listOfQuestions = quiz.getListOfQuestions();
         Scanner scan = new Scanner(System.in);
         int score = 0;
         // print out questions in order and compare what the user inputted to the answer
         for (int i = 0; i < listOfQuestions.size(); i++)
         {
-            PrimitiveQuestion question = listOfQuestions.get(i);
+            Question question = listOfQuestions.get(i);
             System.out.printf(("%d) %s: "),i + 1, question);
 
             String attempt = scan.nextLine();

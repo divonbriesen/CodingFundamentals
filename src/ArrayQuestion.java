@@ -143,4 +143,8 @@ public class ArrayQuestion implements Question
     {
         return new String[3];
     }
+    public String toString()
+    {
+       return answer;
+    }
 }
