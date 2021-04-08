@@ -2,39 +2,41 @@ import java.util.Random;
 
 public class Question
 {
-    private String type;
+    private String datatype;
     private String variableName;
     private String value;
     private String answer;
     private String question;
-    // private String tags;
+    // private String questionType;
     Random randomizer = new Random();
 
     public Question()
     {
-        type = getRandomItem(Data.TYPES); // picks a random datatype from TYPES array
+        datatype = getRandomItem(Data.TYPES); // picks a random datatype from TYPES array
         variableName = getRandomItem(Data.VARIABLE_NAMES); // picks a random variable name from VARIABLE_NAMES array
         // picks a random value for the variable based on the datatype
-        if (type.equals("String"))
+        if (datatype.equals("String"))
             value = getRandomItem(Data.STRING_VALUES);
-        if (type.equals("char"))
+        if (datatype.equals("String[]"))
+            value = getRandomItem(Data.STRING_VALUES);
+        if (datatype.equals("char"))
             value = getRandomItem(Data.CHAR_VALUES);
-        if (type.equals("int"))
+        if (datatype.equals("int"))
             // this gets negative ints rom -999-999
             value = String.valueOf(randomizer.nextInt(1998) - 999);
-        if (type.equals("double"))
+        if (datatype.equals("double"))
             // this looks weird but all it does is round to three decimal places
             value = String.valueOf((randomizer.nextInt(198) - 99) + ((int)(randomizer.nextDouble() * 1000) / 1000.0));
-        if (type.equals("boolean"))
+        if (datatype.equals("boolean"))
             value = String.valueOf(randomizer.nextBoolean());
 
-        if (randomizer.nextInt(100) <= 10) // 10% chance you will just declare the variable with no value
+        if (randomizer.nextInt(100) <= 33) // 10% chance you will just declare the variable with no value
         {
             value = "";
         }
-        else if (randomizer.nextInt(100) <= 10) // if there is a value, 10% chance of there being no type (means you assign a value to an existing variable)
+        else if (randomizer.nextInt(100) <= 33) // if there is a value, 10% chance of there being no type (means you assign a value to an existing variable)
         {
-            type = "";
+            datatype = "";
         }
         answer = generateAnswer();
         question = generateQuestion();
@@ -49,15 +51,15 @@ public class Question
         // chooses the question/answer type based on whether or not a value or type was given
         if (value.isEmpty())
         {
-            answer = type + " " + variableName;
+            answer = datatype + " " + variableName;
         }
-        else if (type.isEmpty())
+        else if (datatype.isEmpty())
         {
             answer =              variableName + " = " + value;
         }
         else
         {
-            answer = type + " " + variableName + " = " + value;
+            answer = datatype + " " + variableName + " = " + value;
         }
         answer += ";";
 
@@ -75,12 +77,12 @@ public class Question
 
         String assignAndDefineText = verb + " " + noun + " " + identifier + " " + variableName + " and " + assign + " " + value;
         String assignText = "Given a variable " + identifier + " " + variableName + ", " + assign + " " + value;
-        String defineText = verb + " " + noun + ", " + identifier + " " + variableName + ", to hold a(n) " + type;
+        String defineText = verb + " " + noun + " " + identifier + " " + variableName + ", to hold a(n) " + datatype;
 
         // chooses which question type to ask based on whether or not there is a type or value
         if (value.length() > 0)
         {
-            if (type.length() > 0)
+            if (datatype.length() > 0)
             {
                 return assignAndDefineText;
             }
@@ -98,9 +100,9 @@ public class Question
     {
         return answer;
     }
-    public String getType()
+    public String getDatatype()
     {
-        return type;
+        return datatype;
     }
     public String toString()
     {

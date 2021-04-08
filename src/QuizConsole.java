@@ -52,7 +52,7 @@ public class QuizConsole
         {
             answerWithNoSpaces.append(answerSplitAtSpaces[i]);
         }
-        if (question.getType().isEmpty())
+        if (question.getDatatype().isEmpty())
         {
             return new String[] {answerSplitAtSpaces[0] + answerWithNoSpaces};
         }
