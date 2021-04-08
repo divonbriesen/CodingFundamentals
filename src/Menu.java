@@ -7,9 +7,7 @@ import java.util.Scanner;
 public class Menu
 {
     private int numOfQuestions = 10;
-    private int difficultyLevel;
     private boolean printAnswers = false;
-    private boolean printQuestionsToScreen = false;
 
     public void displayMenu(String pageID)
     {

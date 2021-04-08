@@ -1,12 +1,26 @@
 import java.util.HashMap;
+import java.util.Random;
 public class Data
 {
-    public static final String[] QUESTION_TYPE = {"variable"};
+    public static final Random RANDOMIZER = new Random();
+    public enum QuestionType
+    {
+        PRIMITIVE;
+
+        public static QuestionType getRandomQuestionType()
+        {
+            QuestionType[] questionTypes = QuestionType.values();
+            int questionTypeIndex = RANDOMIZER.nextInt(questionTypes.length);
+            return questionTypes[questionTypeIndex];
+            
+        }
+    }
+
     public static final String[] VERBS = {"Declare", "Define", "Create"};
     public static final String[] NOUNS = {"a variable", "an identifier"};
     public static final String[] IDENTIFIER = {"called", "named", "with the name","that's called", "that's named", "that has the name"};
     public static final String[] ASSIGN = {"set it to", "assign it the value", "give it the value", "make it equal", "initialize it to"};
-    public static final String[] TYPES = {"String", "int", "boolean", "double", "char", "String[]"};
+    public static final String[] PRIMITIVE_TYPES = {"String", "int", "boolean", "double", "char"};
     public static final String[] VARIABLE_NAMES = {"x", "y", "z", "a", "b", "c"};
     public static final String[] STRING_VALUES = {"\"cat\"", "\"dog\"", "\"true\"", "\"false\"", "\"23\"", "\"Bob\"", "\"Jane\"", "\"Jane\", \"Jill\", \"Jone\""};
     public static final String[] CHAR_VALUES = {"'a'", "'b'", "'c'", "'d'", "'e'", "'f'", "'g'", "'h'", "'i'", "'j'", "'k'", "'l'", "'m'",
