@@ -9,31 +9,7 @@ public class PrimitiveQuestion implements Question
     private String question;
     static Random randomizer = new Random();
     
-    public enum PrimitiveType
-    {
-        STRING("String"),
-        INT("int"),
-        BOOLEAN("boolean"),
-        DOUBLE("double"),
-        CHAR("char");
 
-        private String stringValue;
-        private PrimitiveType(String stringValue)
-        {
-            this.stringValue = stringValue;
-        }
-        public static PrimitiveType getRandomPrimitiveType()
-        {
-            PrimitiveType[] primitiveTypes = PrimitiveType.values();
-            int primitiveTypeIndex = randomizer.nextInt(primitiveTypes.length);
-            return primitiveTypes[primitiveTypeIndex];
-            
-        }
-        public String toString()
-        {
-            return stringValue;
-        }
-    }
     public PrimitiveQuestion()
     {
         datatype = PrimitiveType.getRandomPrimitiveType(); // picks a random datatype from TYPES array
