@@ -25,9 +25,10 @@ public class Quiz
     public void generateQuestionList(int numOfQuestions)
     {
         Question question;
-        QuestionType questionType = QuestionType.getRandomQuestionType();
+        QuestionType questionType;
         for (int i = 0; i < numOfQuestions; i++)
         {
+            questionType = QuestionType.getRandomQuestionType();
             switch (questionType)
             {
                 case PRIMITIVE:

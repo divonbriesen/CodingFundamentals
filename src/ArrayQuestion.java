@@ -59,7 +59,7 @@ public class ArrayQuestion implements Question
         }
         else if (datatype == null)
         {
-            answer = String.format("%s[%d] = %s",variableName, numberOfElements, arrayAsString(values));
+            answer = String.format("%s[%d] = %s;",variableName, numberOfElements, arrayAsString(values));
         }
         else
         {
@@ -164,6 +164,6 @@ public class ArrayQuestion implements Question
     }
     public String toString()
     {
-       return answer;
+       return question;
     }
 }
