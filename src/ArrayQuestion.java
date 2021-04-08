@@ -131,4 +131,16 @@ public class ArrayQuestion implements Question
         }
         return randomArray;
     }
+    public String getAnswer()
+    {
+        return answer;
+    }
+    public String generateQuestion()
+    {
+        return "";
+    }
+    public String[] formatAnswer(String s)
+    {
+        return new String[3];
+    }
 }
