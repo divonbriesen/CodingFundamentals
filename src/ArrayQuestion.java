@@ -146,9 +146,18 @@ public class ArrayQuestion implements Question
     {
         return answer;
     }
-    public String[] formatAnswer(String s)
+    public String[] formatAnswer(String answer)
     {
-        return new String[3];
+        String[] keySymbols = {"=", ";", "{", "}", "[", "]",","};
+        for (String symbol : keySymbols)
+        {
+            if (answer.contains(symbol))
+            {
+                String replacement = " " + symbol + " ";
+                answer = answer.replace(symbol,replacement);
+            }
+        }
+        return answer.split("\\s+");
     }
     public String arrayAsString(String[] stringArray)
     {
