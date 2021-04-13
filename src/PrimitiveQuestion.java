@@ -9,31 +9,7 @@ public class PrimitiveQuestion implements Question
     private String question;
     static Random randomizer = new Random();
     
-    public enum PrimitiveType
-    {
-        STRING("String"),
-        INT("int"),
-        BOOLEAN("boolean"),
-        DOUBLE("double"),
-        CHAR("char");
 
-        private String stringValue;
-        private PrimitiveType(String stringValue)
-        {
-            this.stringValue = stringValue;
-        }
-        public static PrimitiveType getRandomPrimitiveType()
-        {
-            PrimitiveType[] primitiveTypes = PrimitiveType.values();
-            int primitiveTypeIndex = randomizer.nextInt(primitiveTypes.length);
-            return primitiveTypes[primitiveTypeIndex];
-            
-        }
-        public String toString()
-        {
-            return stringValue;
-        }
-    }
     public PrimitiveQuestion()
     {
         datatype = PrimitiveType.getRandomPrimitiveType(); // picks a random datatype from TYPES array
@@ -126,20 +102,13 @@ public class PrimitiveQuestion implements Question
     }
     public String[] formatAnswer(String answer)
     {
-        // if the question doesn't require a type then the answer will be compared with all spaces removed
-        // if the question does require a type, then the answer will be compared  in the format of {type, restOfAnswer}
-        // to ensure that there is at least one space between the type and the variable name
-        String[] answerSplitAtSpaces = answer.split(" ");
-        StringBuilder answerWithNoSpaces = new StringBuilder();
-        for (int i = 1; i < answerSplitAtSpaces.length; i++)
+        if (answer.contains("=") && answer.contains(";"))
         {
-            answerWithNoSpaces.append(answerSplitAtSpaces[i]);
+            answer = answer.replace("="," ");
+            answer = answer.replace(";","");
+            return answer.split("\\s+");
         }
-        if (getDatatype() == null)
-        {
-            return new String[] {answerSplitAtSpaces[0] + answerWithNoSpaces};
-        }
-        return new String[] {answerSplitAtSpaces[0], answerWithNoSpaces.toString()};
+        else return new String[] {"Incorrect"};
     }
     public String getAnswer()
     {

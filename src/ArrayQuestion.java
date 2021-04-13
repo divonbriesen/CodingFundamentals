@@ -2,42 +2,18 @@ import java.util.Random;
 import java.util.ArrayList;
 public class ArrayQuestion implements Question
 {
-    private ArrayType datatype;
+    private PrimitiveType datatype;
     private String variableName;
     private String[] values;
     private int numberOfElements;
     private String answer;
     private String question;
     static Random randomizer = new Random();
-    public enum ArrayType
-    {
-        STRING("String[]"),
-        INT("int[]"),
-        BOOLEAN("boolean[]"),
-        DOUBLE("double[]"),
-        CHAR("char[]");
 
-        private String stringValue;
-        private ArrayType(String stringValue)
-        {
-            this.stringValue = stringValue;
-        }
-        public static ArrayType getRandomArrayType()
-        {
-            ArrayType[] arrayTypes = ArrayType.values();
-            int arrayTypeIndex = randomizer.nextInt(arrayTypes.length);
-            return arrayTypes[arrayTypeIndex];
-            
-        }
-        public String toString()
-        {
-            return stringValue;
-        }
-    }
     public ArrayQuestion()
     {
-        numberOfElements = randomizer.nextInt(5);
-        datatype = ArrayType.getRandomArrayType(); // picks a random datatype from TYPES array
+        numberOfElements = randomizer.nextInt(4) + 1;
+        datatype = PrimitiveType.getRandomPrimitiveType(); // picks a random datatype from TYPES array
         variableName = getRandomItem(Data.VARIABLE_NAMES); // picks a random variable name from VARIABLE_NAMES array
       // picks a random value for the variable based on the datatype
         switch (datatype)
@@ -60,11 +36,16 @@ public class ArrayQuestion implements Question
         }
         if (randomizer.nextInt(100) <= 33) // 10% chance you will just declare the variable with no value
         {
-            values = null;
+            values = new String[0];
+            numberOfElements = randomizer.nextInt(24) + 1;
         }
-        else if (randomizer.nextInt(100) <= 33) // if there is a value, 10% chance of there being no type (means you assign a value to an existing variable)
+        else if (randomizer.nextInt(100) <= 33)
         {
             datatype = null;
+            String temp = values[0];
+            values = new String[1];
+            values[0] = temp;
+
         }
         answer = generateAnswer();
         question = generateQuestion();
@@ -72,21 +53,51 @@ public class ArrayQuestion implements Question
    public String generateAnswer()
     {
         // chooses the question/answer type based on whether or not a value or type was given
-        if (values == null)
+        if (values.length == 0)
         {
-            answer = datatype + " " + variableName;
+            answer = String.format("%s[] %s = new %s[%d];",datatype, variableName, datatype, numberOfElements);
         }
         else if (datatype == null)
         {
-            answer = variableName + " = {" + values + "}";
+            answer = String.format("%s[%d] = %s;",variableName, numberOfElements, arrayAsString(values));
         }
         else
         {
-            answer = datatype + " " + variableName + " = " + values;
+            answer = String.format("%s[] %s = {%s};",datatype,variableName,arrayAsString(values));
         }
-        answer += ";";
 
         return answer;
+    }
+    public String generateQuestion()
+    {
+        // declare a variable called x and assign it the value 3
+        // You need a variable called name to hold the value Susan
+        String verb = getRandomItem(Data.VERBS); // "Declare", "Define", "Create"
+        String noun = getRandomItem(Data.NOUNS); // "variable", "identifier"
+        String identifier = getRandomItem(Data.IDENTIFIER); // "called", "named", etc.
+        String assign = getRandomItem(Data.ASSIGN); // "set it to", "give it the value", etc.
+
+        String assignAndDefineText = verb + " an array " + identifier + " " + variableName + " and " + assign + " " + arrayAsString(values);
+        String assignText = "Given an array " + identifier + " " + variableName + ", " + assign.split(" ")[0] + " the element at index "
+                          + numberOfElements + " " + assign.split(" ")[2] + " " + arrayAsString(values);
+        String defineText = verb + " an array " + identifier + " " + variableName + ", to hold " + numberOfElements + " " + datatype + "s";
+
+        // chooses which question type to ask based on whether or not there is a type or value
+        if (values.length > 0)
+        {
+            if (datatype != null)
+            {
+                return assignAndDefineText;
+            }
+            else
+            {
+                return assignText;
+            }
+        }
+        else
+        {
+            return defineText;
+        }
     }
     public String[] getRandomElements(String[] arrayOfStrings)
     {
@@ -135,16 +146,33 @@ public class ArrayQuestion implements Question
     {
         return answer;
     }
-    public String generateQuestion()
+    public String[] formatAnswer(String answer)
     {
-        return "";
+        String[] keySymbols = {"=", ";", "{", "}", "[", "]",","};
+        for (String symbol : keySymbols)
+        {
+            if (answer.contains(symbol))
+            {
+                String replacement = " " + symbol + " ";
+                answer = answer.replace(symbol,replacement);
+            }
+        }
+        return answer.split("\\s+");
     }
-    public String[] formatAnswer(String s)
+    public String arrayAsString(String[] stringArray)
     {
-        return new String[3];
+        if (stringArray.length == 0) return "";
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String string : stringArray)
+        {
+            stringBuilder.append(String.format("%s, ", string));
+        }
+        String result = stringBuilder.toString();
+        result = result.substring(0, result.length() - 2);
+        return result;
     }
     public String toString()
     {
-       return answer;
+       return question;
     }
 }
