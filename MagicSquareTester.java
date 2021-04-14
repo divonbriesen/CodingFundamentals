@@ -1,4 +1,4 @@
-// Magic square pasted 
+/* Magic square pasted 
 Assignment 4 – Magic Square
 See assignment date in course, see also successful submission requirements in General Info section in course
 The goal of this assignment is to determine if a 2D array is a magic square.
@@ -21,9 +21,14 @@ Each number should only occur once in the magic square.
 9 5 1
 4 3 8
 In the square above, each number appears only once, and each row, column, and diagonal sums to 15:
-Rows: 2 + 7 + 6 = 159 + 5 + 1 = 154 + 3 + 8 = 15
-Columns: 2 + 9 + 4 = 157 + 5 + 3 = 156 + 1 + 8 = 15
-Diagonals: 2 + 5 + 8 = 154 + 5 + 6 = 15
+Rows: 2 + 7 + 6 = 15
+9 + 5 + 1 = 15
+4 + 3 + 8 = 15
+Columns: 2 + 9 + 4 = 15
+7 + 5 + 3 = 15
+6 + 1 + 8 = 15
+Diagonals: 2 + 5 + 8 = 15
+4 + 5 + 6 = 15
 
 Store the set of integers in a 2D array. Your program should pass the array (or parts of the array) to various methods that check one of the rules to determine if it is a magic number.
 

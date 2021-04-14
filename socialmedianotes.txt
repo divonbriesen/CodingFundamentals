@@ -1,0 +1,13 @@
+Project setup
+Fields correct 10 pts; Methods correct 15 pts; Inheritance applied 15 pts
+
+This criterion is linked to a Learning OutcomePostGenerator
+Type of post randomized 5 pts; User randomized
+ date/time randomized 
+post content randomized
+generatePosts creates an array with length equal to the parameter
+method works correctly 
+This criterion is linked to a Learning OutcomeOutput
+Posts displayed as expected 
+This criterion is linked to a Learning OutcomeProject compiled
+This criterion is linked to a Learning OutcomeDocumentation

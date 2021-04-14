@@ -1,7 +1,15 @@
 1 2 3 4 5 6 7 8 9
-9 8 7 6 5 4 3 2 1
+9 8 7 6 5 4 3 2 1 0
 111111111111111111111111111111111 22222222222222222222
 33333333333333333333333 4444444444444444444
 2 4 6 8
 333 222 111 444 666 9999
+2 7 6 9 5 1 4 3 8
+2 7 6 9 5 1 4 3 8 9
+that's one above!!
 a b c d e f g
+It's a magic square if:
+- can be laid out as X by X 
+- sum of each row matches
+- sum of each column matches
+- sume of diagonals match

@@ -3,16 +3,17 @@ import java.util.*; //needed for Scanner class
 
 public class BasicReaderWriter
 {
-    Scanner inputReader;
+    Scanner inputReader; // could call aScanner
     PrintWriter outputWriter;
 
     // constructor will setup up file reader and writer when called
-    public BasicReaderWriter(String _nameOfInputFile, String _nameOfOutputFile)
+    public BasicReaderWriter(String _nameOfInputFile, String _nameOfOutputFile) throws Exception
     {
         File inputFile = new File(_nameOfInputFile);
+       // File inputFile = new File("magicsquaredata.txt");
         inputReader = new Scanner(inputFile);
          
-        PrintWriter outputWriter = new PrintWriter(_nameOfOutputFile);  
+        outputWriter = new PrintWriter(_nameOfOutputFile);  
     }
 
     public String readLine()
@@ -70,6 +71,7 @@ public class BasicReaderWriter
         output.close();   
 
         System.out.println("Data written to the file.");   
-        */
+        
     } // end main
+    */
 } // end class
