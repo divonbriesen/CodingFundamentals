@@ -1,30 +1,46 @@
+import java.lang.reflect.Array;
+
 public class MagicSquareChecker
 {
-    int[][] theSquare; 
+    int[][] theSquare;
+
     boolean itIsMagic;
     
     public MagicSquareChecker(int[] listOfNumbers)
     {
-        if (checkForCube(listOfNumbers.length))
+        if (checkForSquareRoot(listOfNumbers.length))
         {
             theSquare = listOfNumbers
         }
         else itIsMagic = false; 
     }
 
-    public void convertToSquare()
+    public void convertToSquare(int[] _listOfNumbers)
     {
-        double squareRoot = Math.sqrt(int _count);
+       int squareRoot = (int)Math.sqrt(_listOfNumbers.length);
+       int lengthOfSquare = squareRoot;
+       //need to convert to 2D Array
+       theSquare = new int[lengthOfSquare][lengthOfSquare];
+
+       for(int i = 0; i < lengthOfSquare; i++ )
+       {
+            theSquare[i][i] = _listOfNumbers[i];
+       }
+    }
+
+    public boolean checkForSquareRoot(int _count)
+    {
+        double squareRoot = Math.sqrt(_count);
 
         if (squareRoot % 1 == 0) // square root is evenly divisible by a whole number
         { 
             System.out.print("Square root is even: " + squareRoot);
             return true;
-        } else  return false;
-    }
-    public boolean checkForCube(int count)
-    {
-
+        } 
+        else  
+        {
+            return false;
+        }
     }
 
     public boolean checkHorizontalSums(int[] row,  int sum)
