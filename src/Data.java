@@ -2,18 +2,6 @@ import java.util.HashMap;
 import java.util.Random;
 public class Data
 {
-    public static final Random RANDOMIZER = new Random();
-    public enum QuestionType
-    {
-        PRIMITIVE;
-
-        public static QuestionType getRandomQuestionType()
-        {
-            QuestionType[] questionTypes = QuestionType.values();
-            int questionTypeIndex = RANDOMIZER.nextInt(questionTypes.length);
-            return questionTypes[questionTypeIndex];
-        }
-    }
     public static final String[] VERBS = {"Declare", "Define", "Create"};
     public static final String[] NOUNS = {"a variable", "an identifier"};
     public static final String[] IDENTIFIER = {"called", "named", "with the name","that's called", "that's named", "that has the name"};
@@ -35,5 +23,4 @@ public class Data
         PAGES.put("1",PAGE1);
         PAGES.put("14",PAGE14);
     }
-
 }

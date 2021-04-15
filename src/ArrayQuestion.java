@@ -1,8 +1,8 @@
 import java.util.Random;
-import java.util.ArrayList;
+
 public class ArrayQuestion implements Question
 {
-    private PrimitiveType datatype;
+    private Type datatype;
     private String variableName;
     private String[] values;
     private int numberOfElements;
@@ -13,7 +13,7 @@ public class ArrayQuestion implements Question
     public ArrayQuestion()
     {
         numberOfElements = randomizer.nextInt(4) + 1;
-        datatype = PrimitiveType.getRandomPrimitiveType(); // picks a random datatype from TYPES array
+        datatype = Type.getRandomType(); // picks a random datatype from TYPES array
         variableName = getRandomItem(Data.VARIABLE_NAMES); // picks a random variable name from VARIABLE_NAMES array
       // picks a random value for the variable based on the datatype
         switch (datatype)
@@ -123,7 +123,7 @@ public class ArrayQuestion implements Question
         }
         return randomArray;
     }
-    public String[] generateRandomBooleanArray()
+     public String[] generateRandomBooleanArray()
     {
         String[] randomArray = new String[numberOfElements];
         for (int i = 0; i < numberOfElements; i++)

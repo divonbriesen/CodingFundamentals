@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public enum PrimitiveType
+public enum Type
 {
     STRING("String"),
     INT("int"),
@@ -9,13 +9,13 @@ public enum PrimitiveType
     CHAR("char");
     private static Random randomizer = new Random();
     private String stringValue;
-    PrimitiveType(String stringValue)
+    Type(String stringValue)
     {
         this.stringValue = stringValue;
     }
-    public static PrimitiveType getRandomPrimitiveType()
+    public static Type getRandomType()
     {
-        PrimitiveType[] primitiveTypes = PrimitiveType.values();
+        Type[] primitiveTypes = Type.values();
         int primitiveTypeIndex = randomizer.nextInt(primitiveTypes.length);
         return primitiveTypes[primitiveTypeIndex];
 
