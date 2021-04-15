@@ -81,7 +81,7 @@ public class PrimitiveQuestion implements Question
 
         String assignAndDefineText = verb + " " + noun + " " + identifier + " " + variableName + " and " + assign + " " + value;
         String assignText = "Given a variable " + identifier + " " + variableName + ", " + assign + " " + value;
-        String defineText = verb + " " + noun + " " + identifier + " " + variableName + ", to hold a(n) " + datatype;
+        String defineText = verb + " " + noun + " " + identifier + " " + variableName + ", to hold a(n)" + (datatype == PrimitiveType.INT ? "(n) " : " ")  + datatype;
 
         // chooses which question type to ask based on whether or not there is a type or value
         if (value.length() > 0)

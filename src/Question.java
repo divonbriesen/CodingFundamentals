@@ -1,8 +1,8 @@
 public interface Question 
 {
-   public String generateAnswer();
-   public String generateQuestion();
-   public String[] formatAnswer(String answer);
-   public String getAnswer();
+   String generateAnswer();
+   String generateQuestion();
+   String[] formatAnswer(String answer);
+   String getAnswer();
 }
    
