@@ -15,16 +15,17 @@ public class IOTest2
             String thisLine = input.nextLine();
             // do some other operations with this one line of code
             allText += "\n" + counter++ + thisLine;     // could just put += input.nextLIne
+            // stupid to add a line number on every line, but shows how you can
 
         }   
         input.close();  
         System.out.println("Just read thru the whole file. Now going to write to the new one.");
         
-        // setup all the output //////////////////////////////////////////////////////////////////
+        // setup all the output ///////////////////////////////////////////////////
         String filename = "myoutput.txt";      // File name           
         PrintWriter output = new PrintWriter(filename); 
         
-        allText = allText.replace(" ", "$$$");
+        allText = allText.replace(" ", "$$$"); // stupid thing to do, but illustrates how it works
         output.println(allText);    
         output.close();   
 
