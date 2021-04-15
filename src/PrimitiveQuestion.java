@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class PrimitiveQuestion implements Question
 {
-    private PrimitiveType datatype;
+    private Type datatype;
     private String variableName;
     private String value;
     private String answer;
@@ -12,7 +12,7 @@ public class PrimitiveQuestion implements Question
 
     public PrimitiveQuestion()
     {
-        datatype = PrimitiveType.getRandomPrimitiveType(); // picks a random datatype from TYPES array
+        datatype = Type.getRandomPrimitiveType(); // picks a random datatype from TYPES array
         variableName = getRandomItem(Data.VARIABLE_NAMES); // picks a random variable name from VARIABLE_NAMES array
         // picks a random value for the variable based on the datatype
         switch (datatype)
@@ -114,7 +114,7 @@ public class PrimitiveQuestion implements Question
     {
         return answer;
     }
-    public PrimitiveType getDatatype()
+    public Type getDatatype()
     {
         return datatype;
     }
