@@ -13,7 +13,7 @@ public class ArrayQuestion implements Question
     public ArrayQuestion()
     {
         numberOfElements = randomizer.nextInt(4) + 1;
-        datatype = Type.getRandomPrimitiveType(); // picks a random datatype from TYPES array
+        datatype = Type.getRandomType(); // picks a random datatype from TYPES array
         variableName = getRandomItem(Data.VARIABLE_NAMES); // picks a random variable name from VARIABLE_NAMES array
       // picks a random value for the variable based on the datatype
         switch (datatype)

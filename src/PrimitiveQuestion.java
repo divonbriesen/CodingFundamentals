@@ -12,7 +12,7 @@ public class PrimitiveQuestion implements Question
 
     public PrimitiveQuestion()
     {
-        datatype = Type.getRandomPrimitiveType(); // picks a random datatype from TYPES array
+        datatype = Type.getRandomType(); // picks a random datatype from TYPES array
         variableName = getRandomItem(Data.VARIABLE_NAMES); // picks a random variable name from VARIABLE_NAMES array
         // picks a random value for the variable based on the datatype
         switch (datatype)
@@ -81,7 +81,7 @@ public class PrimitiveQuestion implements Question
 
         String assignAndDefineText = verb + " " + noun + " " + identifier + " " + variableName + " and " + assign + " " + value;
         String assignText = "Given a variable " + identifier + " " + variableName + ", " + assign + " " + value;
-        String defineText = verb + " " + noun + " " + identifier + " " + variableName + ", to hold a(n) " + datatype;
+        String defineText = verb + " " + noun + " " + identifier + " " + variableName + ", to hold a(n)" + (datatype == Type.INT ? "(n) " : " ")  + datatype;
 
         // chooses which question type to ask based on whether or not there is a type or value
         if (value.length() > 0)

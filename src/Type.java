@@ -13,7 +13,7 @@ public enum Type
     {
         this.stringValue = stringValue;
     }
-    public static Type getRandomPrimitiveType()
+    public static Type getRandomType()
     {
         Type[] primitiveTypes = Type.values();
         int primitiveTypeIndex = randomizer.nextInt(primitiveTypes.length);
