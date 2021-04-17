@@ -9,6 +9,7 @@ public class SimplestReadWrite
         File aFile = new File("input.txt");
         Scanner input = new Scanner(aFile);
 
+
       //  String aLine = input.nextLine();
       //  System.out.println(aLine); // reads and outputs at same time
 
