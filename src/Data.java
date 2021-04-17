@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.Random;
 public class Data
 {
     public static final String[] VERBS = {"Declare", "Define", "Create"};
@@ -16,11 +15,13 @@ public class Data
                                                 "'E'", "'F'", "'G'", "'H'", "'I'", "'J'", "'K'", "'L'", "'M'", "'N'", "'O'", "'P'", "'Q'",
                                                 "'R'", "'S'", "'T'", "'U'", "'V'", "'W'", "'X'", "'Y'", "'Z'"};
     public static final String PAGE1 = "HOME\n1. Start quiz\n2. Print quiz to file\n3. Print all questions to screen\n4. Options\n5. Exit";
-    public static final String PAGE14 = "OPTIONS\n1. Back to home\n2. Change number of questions\n3. Change difficulty\n4. Print answer key with quiz";
+    public static final String PAGE14 = "OPTIONS\n1. Back to home\n2. Change number of questions\n3. Change difficulty\n4. Print answer key with quiz\n5. Change type of questions";
+    public static final String PAGE145 = "QUESTION TYPE SETTINGS\n1. Back to options\n2. Include basic variable questions\n3. Include array questions";
     public static final HashMap<String, String> PAGES = new HashMap<>();
     static
     {
         PAGES.put("1",PAGE1);
         PAGES.put("14",PAGE14);
+        PAGES.put("145",PAGE145);
     }
 }

@@ -11,10 +11,18 @@ public class Quiz
         public static QuestionType getRandomQuestionType()
         {
             Random randomizer = new Random();
-            QuestionType[] questionTypes = QuestionType.values();
-            int questionTypeIndex = randomizer.nextInt(questionTypes.length);
-            return questionTypes[questionTypeIndex];
-            
+            ArrayList<QuestionType> questionTypes = new ArrayList<>();
+            if (Menu.isBasicQuestionsIncluded())
+            {
+                questionTypes.add(PRIMITIVE);
+            }
+            if (Menu.isArrayQuestionsIncluded())
+            {
+                questionTypes.add(ARRAY);
+            }
+            int questionTypeIndex = randomizer.nextInt(questionTypes.size());
+            return questionTypes.get(questionTypeIndex);
+
         }
     }
     public Quiz(int numOfQuestions)

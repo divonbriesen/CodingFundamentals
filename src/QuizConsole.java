@@ -39,14 +39,6 @@ public class QuizConsole
         String[] answerAttemptArray = question.formatAnswer(answerAttempt);
         String[] correctAnswerArray = question.formatAnswer(question.getAnswer());
 
-        for (String s : answerAttemptArray)
-        {
-            System.out.println("attempt: " + s);
-        }
-        for (String s : correctAnswerArray)
-        {
-            System.out.println("correct: " + s);
-        }
         return Arrays.equals(answerAttemptArray, correctAnswerArray);
     }
 }

@@ -102,13 +102,16 @@ public class PrimitiveQuestion implements Question
     }
     public String[] formatAnswer(String answer)
     {
-        if (answer.contains("=") && answer.contains(";"))
+        String[] keySymbols = {"=", ";"};
+        for (String symbol : keySymbols)
         {
-            answer = answer.replace("="," ");
-            answer = answer.replace(";","");
-            return answer.split("\\s+");
+            if (answer.contains(symbol))
+            {
+                String replacement = " " + symbol + " ";
+                answer = answer.replace(symbol,replacement);
+            }
         }
-        else return new String[] {"Incorrect"};
+        return answer.split("\\s+");
     }
     public String getAnswer()
     {

@@ -8,7 +8,8 @@ public class Menu
 {
     private int numOfQuestions = 10;
     private boolean printAnswers = false;
-
+    private static boolean basicQuestionsIncluded = true;
+    private static boolean arrayQuestionsIncluded = true;
     public void displayMenu(String pageID)
     {
         clearConsole();
@@ -71,9 +72,37 @@ public class Menu
         }
         if (pageID.equals("144"))
         {
-            printAnswers = !printAnswers;
-            System.out.printf("An answer key will %sbe printed at the bottom of your quiz", printAnswers ? "" : "not ");
-            try {Thread.sleep(1000);}
+            printAnswerKey();
+            previousPage(pageID);
+        }
+        if (pageID.equals("1452"))
+        {
+            if (arrayQuestionsIncluded || !basicQuestionsIncluded)
+            {
+                basicQuestionsIncluded = !basicQuestionsIncluded;
+                System.out.printf("Basic questions will %sbe included in your quiz", basicQuestionsIncluded ? "" : "not ");
+            }
+            else
+            {
+                System.out.println("You must included at least one type of questions in your quiz");
+            }
+            try {Thread.sleep(2500);}
+            catch (InterruptedException e) {System.out.println("Whoops something went wrong");}
+            previousPage(pageID);
+        }
+        if (pageID.equals("1453"))
+        {
+            if (!arrayQuestionsIncluded || basicQuestionsIncluded)
+            {
+                arrayQuestionsIncluded = !arrayQuestionsIncluded;
+                System.out.printf("Array questions will %sbe included in your quiz", arrayQuestionsIncluded ? "" : "not ");
+            }
+            else
+            {
+                System.out.println("You must included at least one type of question in your quiz");
+            }
+
+            try {Thread.sleep(2500);}
             catch (InterruptedException e) {System.out.println("Whoops something went wrong");}
             previousPage(pageID);
         }
@@ -83,6 +112,15 @@ public class Menu
             previousPage(pageID);
         }
     }
+
+    private void printAnswerKey()
+    {
+        printAnswers = !printAnswers;
+        System.out.printf("An answer key will %sbe printed at the bottom of your quiz", printAnswers ? "" : "not ");
+        try {Thread.sleep(1000);}
+        catch (InterruptedException e) {System.out.println("Whoops something went wrong");}
+    }
+
     private void printQuestionsToScreen()
     {
         Quiz quiz = new Quiz(numOfQuestions);
@@ -195,7 +233,7 @@ public class Menu
             }
             else
             {
-                Runtime.getRuntime().exec("clear");
+                System.out.print("\033\143");
             }
         }
         catch (Exception e)
@@ -206,6 +244,14 @@ public class Menu
     public void previousPage(String pageID)
     {
         displayMenu(pageID.substring(0,pageID.length() - 1));
+    }
+
+    public static boolean isBasicQuestionsIncluded() {
+        return basicQuestionsIncluded;
+    }
+
+    public static boolean isArrayQuestionsIncluded() {
+        return arrayQuestionsIncluded;
     }
 }
 
