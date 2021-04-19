@@ -7,7 +7,11 @@ public enum Type
     BOOLEAN("boolean"),
     DOUBLE("double"),
     CHAR("char");
+//    OBJECT("");
     private static Random randomizer = new Random();
+
+
+
     private String stringValue;
     Type(String stringValue)
     {
@@ -19,6 +23,10 @@ public enum Type
         int randomTypeIndex = randomizer.nextInt(randomType.length);
         return randomType[randomTypeIndex];
 
+    }
+    public void setStringValue(String stringValue)
+    {
+        this.stringValue = stringValue;
     }
     public String toString()
     {
