@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.time.*;
 
 public class QuizConsole
 {
     public static void startQuiz(Quiz quiz)
     {
+        Instant startTime = Instant.now();
         ArrayList<Question> listOfQuestions = quiz.getListOfQuestions();
         Scanner scan = new Scanner(System.in);
         int score = 0;
@@ -30,6 +32,9 @@ public class QuizConsole
                 System.out.println("        Better luck next time!\n");
             }
         }
+        Instant endTime = Instant.now();
+        Duration timeElapsed = Duration.between(startTime, endTime);
+        System.out.println("You took " + timeElapsed.toMinutesPart() + " minutes and " + timeElapsed.toSecondsPart() +" seconds to complete the quiz");
         System.out.println("Your final score was: " + score + "/" + listOfQuestions.size());
         System.out.print("Press enter to go back to the menu...");
         scan.nextLine();

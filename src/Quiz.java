@@ -5,7 +5,7 @@ public class Quiz
     private ArrayList<Question> listOfQuestions;
     private enum QuestionType
     {
-        PRIMITIVE,
+        BASIC,
         ARRAY;
 
         public static QuestionType getRandomQuestionType()
@@ -14,7 +14,7 @@ public class Quiz
             ArrayList<QuestionType> questionTypes = new ArrayList<>();
             if (Menu.isBasicQuestionsIncluded())
             {
-                questionTypes.add(PRIMITIVE);
+                questionTypes.add(BASIC);
             }
             if (Menu.isArrayQuestionsIncluded())
             {
@@ -39,14 +39,14 @@ public class Quiz
             questionType = QuestionType.getRandomQuestionType();
             switch (questionType)
             {
-                case PRIMITIVE:
-                    question = new PrimitiveQuestion();
+                case BASIC:
+                    question = new BasicQuestion();
                     break;
                 case ARRAY:
                     question = new ArrayQuestion();
                     break;
                 default:
-                    question = new PrimitiveQuestion();
+                    question = new BasicQuestion();
                     System.out.println("Error");
                     break;
             }

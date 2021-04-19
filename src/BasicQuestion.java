@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class PrimitiveQuestion implements Question
+public class BasicQuestion implements Question
 {
     private Type datatype;
     private String variableName;
@@ -10,7 +10,7 @@ public class PrimitiveQuestion implements Question
     static Random randomizer = new Random();
     
 
-    public PrimitiveQuestion()
+    public BasicQuestion()
     {
         datatype = Type.getRandomType(); // picks a random datatype from TYPES array
         variableName = getRandomItem(Data.VARIABLE_NAMES); // picks a random variable name from VARIABLE_NAMES array
@@ -73,11 +73,15 @@ public class PrimitiveQuestion implements Question
     {
         // declare a variable called x and assign it the value 3
         // You need a variable called name to hold the value Susan
+        final String[] VERBS = {"Declare", "Define", "Create"};
+        final String[] NOUNS = {"a variable", "an identifier"};
+        final String[] IDENTIFIER = {"called", "named", "with the name","that's called", "that's named", "that has the name"};
+        final String[] ASSIGN = {"set it to", "assign it the value", "give it the value", "make it equal", "initialize it to"};
 
-        String verb = getRandomItem(Data.VERBS); // "Declare", "Define", "Create"
-        String noun = getRandomItem(Data.NOUNS); // "variable", "identifier"
-        String identifier = getRandomItem(Data.IDENTIFIER); // "called", "named", etc.
-        String assign = getRandomItem(Data.ASSIGN); // "set it to", "give it the value", etc.
+        String verb = getRandomItem(VERBS); // "Declare", "Define", "Create"
+        String noun = getRandomItem(NOUNS); // "variable", "identifier"
+        String identifier = getRandomItem(IDENTIFIER); // "called", "named", etc.
+        String assign = getRandomItem(ASSIGN); // "set it to", "give it the value", etc.
 
         String assignAndDefineText = verb + " " + noun + " " + identifier + " " + variableName + " and " + assign + " " + value;
         String assignText = "Given a variable " + identifier + " " + variableName + ", " + assign + " " + value;

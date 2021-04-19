@@ -72,15 +72,18 @@ public class ArrayQuestion implements Question
     {
         // declare a variable called x and assign it the value 3
         // You need a variable called name to hold the value Susan
-        String verb = getRandomItem(Data.VERBS); // "Declare", "Define", "Create"
-        String noun = getRandomItem(Data.NOUNS); // "variable", "identifier"
-        String identifier = getRandomItem(Data.IDENTIFIER); // "called", "named", etc.
-        String assign = getRandomItem(Data.ASSIGN); // "set it to", "give it the value", etc.
+        final String[] VERBS = {"Declare", "Define", "Create"};
+        final String[] IDENTIFIER = {"called", "named", "that's named", "with the name"};
+        final String[] ASSIGN = {"assign it the value", "give it the value", "initialize it with the value"};
+        String verb = getRandomItem(VERBS); // "Declare", "Define", "Create"
+        String identifier = getRandomItem(IDENTIFIER); // "called", "named", etc.
+        String assign = getRandomItem(ASSIGN); // "set it to", "give it the value", etc.
+        boolean plural = numberOfElements > 1;
 
-        String assignAndDefineText = verb + " an array " + identifier + " " + variableName + " and " + assign + " " + arrayAsString(values);
+        String assignAndDefineText = verb + " an array " + identifier + " " + variableName + " and " + assign + (plural ? "s ": " ") + arrayAsString(values);
         String assignText = "Given an array " + identifier + " " + variableName + ", " + assign.split(" ")[0] + " the element at index "
-                          + numberOfElements + " " + assign.split(" ")[2] + " " + arrayAsString(values);
-        String defineText = verb + " an array " + identifier + " " + variableName + ", to hold " + numberOfElements + " " + datatype + "s";
+                          + numberOfElements + " the value " + arrayAsString(values);
+        String defineText = verb + " an array " + identifier + " " + variableName + ", to hold " + numberOfElements  + " " + datatype + (plural ? "s ": "");
 
         // chooses which question type to ask based on whether or not there is a type or value
         if (values.length > 0)
@@ -162,10 +165,23 @@ public class ArrayQuestion implements Question
     public String arrayAsString(String[] stringArray)
     {
         if (stringArray.length == 0) return "";
+
+        if (stringArray.length == 2)
+            return String.format("%s and %s", stringArray[0], stringArray[1]);
+
         StringBuilder stringBuilder = new StringBuilder();
-        for (String string : stringArray)
+        for (int i = 0; i < stringArray.length; i++)
         {
-            stringBuilder.append(String.format("%s, ", string));
+            String string = stringArray[i];
+
+            if (i == stringArray.length - 2)
+            {
+                stringBuilder.append(String.format("%s, and ", string));
+            }
+            else
+            {
+                stringBuilder.append(String.format("%s, ", string));
+            }
         }
         String result = stringBuilder.toString();
         result = result.substring(0, result.length() - 2);

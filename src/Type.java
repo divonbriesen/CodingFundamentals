@@ -15,9 +15,9 @@ public enum Type
     }
     public static Type getRandomType()
     {
-        Type[] primitiveTypes = Type.values();
-        int primitiveTypeIndex = randomizer.nextInt(primitiveTypes.length);
-        return primitiveTypes[primitiveTypeIndex];
+        Type[] randomType = Type.values();
+        int randomTypeIndex = randomizer.nextInt(randomType.length);
+        return randomType[randomTypeIndex];
 
     }
     public String toString()

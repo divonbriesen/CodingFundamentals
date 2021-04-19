@@ -150,25 +150,17 @@ public class Menu
         try
         {
             File file = new File(filename);
-            if (file.createNewFile())
-            {
-                System.out.println("File successfully created!");
-                Thread.sleep(500);
-            }
-            else
-            {
+            if (!file.createNewFile()) {
                 int i = 1;
-                while (!file.createNewFile())
-                {
+                while (!file.createNewFile()) {
                     filename = "quiz" + i + ".txt";
                     file = new File(filename);
                     i++;
                 }
-                System.out.println("File successfully created!");
-                Thread.sleep(500);
-
-
             }
+            System.out.println("File successfully created!");
+            Thread.sleep(500);
+
             FileWriter fileWriter = new FileWriter(filename);
             System.out.print("Writing");
             for(int i = 0; i < 3; i++)
