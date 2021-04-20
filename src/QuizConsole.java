@@ -21,7 +21,7 @@ public class QuizConsole
 
             if (compareAnswer(question, attempt))
             {
-                System.out.println("Your answer was:    " + attempt);
+                System.out.println("   Your answer was: " + attempt);
                 System.out.print(  "Correct answer was: " + question.getAnswer());
                 System.out.println("        Good job!\n");
                 score++;

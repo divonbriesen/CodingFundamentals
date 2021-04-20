@@ -33,11 +33,6 @@ public class BasicQuestion implements Question
             case BOOLEAN:
                 value = String.valueOf(randomizer.nextBoolean());
                 break;
-//            case OBJECT:
-//                datatype.setStringValue(getRandomItem(Data.CLASS_NAMES));
-//                value = String.format("new %s()",datatype);
-//                break;
-
         }
         if (randomizer.nextInt(100) <= 33) // 10% chance you will just declare the variable with no value
         {
@@ -87,8 +82,7 @@ public class BasicQuestion implements Question
         String noun = getRandomItem(NOUNS); // "variable", "identifier"
         String identifier = getRandomItem(IDENTIFIER); // "called", "named", etc.
         String assign = getRandomItem(ASSIGN); // "set it to", "give it the value", etc.
-//        if (datatype == Type.OBJECT)
-//            value = String.format("a new %s object",datatype);
+
         String assignAndDefineText = verb + " " + noun + " " + identifier + " " + variableName + " and " + assign + " " + value;
         String assignText = "Given a variable " + identifier + " " + variableName + ", " + assign + " " + value;
         String defineText = verb + " " + noun + " " + identifier + " " + variableName + ", to hold a" + (datatype == Type.INT ? "n " : " ")  + datatype;
@@ -112,6 +106,7 @@ public class BasicQuestion implements Question
     }
     public String[] formatAnswer(String answer)
     {
+        answer = answer.strip();
         String[] keySymbols = {"=", ";"};
         for (String symbol : keySymbols)
         {
@@ -126,10 +121,6 @@ public class BasicQuestion implements Question
     public String getAnswer()
     {
         return answer;
-    }
-    public Type getDatatype()
-    {
-        return datatype;
     }
     public String toString()
     {

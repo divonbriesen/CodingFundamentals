@@ -47,6 +47,7 @@ public class ArrayQuestion implements Question
             values[0] = temp;
 
         }
+
         answer = generateAnswer();
         question = generateQuestion();
    }
@@ -59,11 +60,11 @@ public class ArrayQuestion implements Question
         }
         else if (datatype == null)
         {
-            answer = String.format("%s[%d] = %s;",variableName, numberOfElements, arrayAsString(values));
+            answer = String.format("%s[%d] = %s;",variableName, numberOfElements, arrayAsStringAnswer(values));
         }
         else
         {
-            answer = String.format("%s[] %s = {%s};",datatype,variableName,arrayAsString(values));
+            answer = String.format("%s[] %s = {%s};",datatype,variableName, arrayAsStringAnswer(values));
         }
 
         return answer;
@@ -80,9 +81,9 @@ public class ArrayQuestion implements Question
         String assign = getRandomItem(ASSIGN); // "set it to", "give it the value", etc.
         boolean plural = numberOfElements > 1;
 
-        String assignAndDefineText = verb + " an array " + identifier + " " + variableName + " and " + assign + (plural ? "s ": " ") + arrayAsString(values);
+        String assignAndDefineText = verb + " an array " + identifier + " " + variableName + " and " + assign + (plural ? "s ": " ") + arrayAsStringQuestion(values);
         String assignText = "Given an array " + identifier + " " + variableName + ", " + assign.split(" ")[0] + " the element at index "
-                          + numberOfElements + " the value " + arrayAsString(values);
+                          + numberOfElements + " the value " + arrayAsStringQuestion(values);
         String defineText = verb + " an array " + identifier + " " + variableName + ", to hold " + numberOfElements  + " " + datatype + (plural ? "s ": "");
 
         // chooses which question type to ask based on whether or not there is a type or value
@@ -151,6 +152,7 @@ public class ArrayQuestion implements Question
     }
     public String[] formatAnswer(String answer)
     {
+        answer = answer.strip();
         String[] keySymbols = {"=", ";", "{", "}", "[", "]",","};
         for (String symbol : keySymbols)
         {
@@ -162,7 +164,7 @@ public class ArrayQuestion implements Question
         }
         return answer.split("\\s+");
     }
-    public String arrayAsString(String[] stringArray)
+    public String arrayAsStringQuestion(String[] stringArray)
     {
         if (stringArray.length == 0) return "";
 
@@ -182,6 +184,18 @@ public class ArrayQuestion implements Question
             {
                 stringBuilder.append(String.format("%s, ", string));
             }
+        }
+        String result = stringBuilder.toString();
+        result = result.substring(0, result.length() - 2);
+        return result;
+    }
+    public String arrayAsStringAnswer(String[] stringArray)
+    {
+        if (stringArray.length == 0) return "";
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String string : stringArray)
+        {
+            stringBuilder.append(String.format("%s, ", string));
         }
         String result = stringBuilder.toString();
         result = result.substring(0, result.length() - 2);
