@@ -19,8 +19,7 @@ public class Menu
         if (Data.PAGES.get(pageID) == null)
         {
             System.out.println("Invalid option");
-            try { Thread.sleep(1000); }
-            catch (InterruptedException e) { System.out.println("Whoops"); }
+            sleep(1000);
             previousPage(pageID);
         }
     // STEP 2: display page
@@ -97,8 +96,7 @@ public class Menu
             System.out.println("You must included at least one type of question in your quiz");
         }
 
-        try {Thread.sleep(2500);}
-        catch (InterruptedException e) {System.out.println("Whoops something went wrong");}
+        sleep(2000);
     }
 
     private void toggleBasicQuestions() {
@@ -111,16 +109,14 @@ public class Menu
         {
             System.out.println("You must included at least one type of questions in your quiz");
         }
-        try {Thread.sleep(2500);}
-        catch (InterruptedException e) {System.out.println("Whoops something went wrong");}
+        sleep(2000);
     }
 
     private void printAnswerKey()
     {
         printAnswers = !printAnswers;
         System.out.printf("An answer key will %sbe printed at the bottom of your quiz", printAnswers ? "" : "not ");
-        try {Thread.sleep(1000);}
-        catch (InterruptedException e) {System.out.println("Whoops something went wrong");}
+        sleep(1000);
     }
 
     private void printQuestionsToScreen()
@@ -161,14 +157,14 @@ public class Menu
                 }
             }
             System.out.println("File successfully created!");
-            Thread.sleep(500);
+            sleep(500);
 
             FileWriter fileWriter = new FileWriter(filename);
             System.out.print("Writing");
             for(int i = 0; i < 3; i++)
             {
                 System.out.print(".");
-                Thread.sleep(1000);
+                sleep(1000);
             }
 
             for (int i = 0; i < listOfQuestions.size(); i++)
@@ -187,9 +183,9 @@ public class Menu
             }
             fileWriter.close();
             System.out.println("Done!");
-            Thread.sleep(1000);
+            sleep(1000);
         }
-        catch (IOException | InterruptedException e)
+        catch (IOException e)
         {
             System.out.println("Whoops looks like something went wrong!");
         }
@@ -240,6 +236,11 @@ public class Menu
         displayMenu(pageID.substring(0,pageID.length() - 1));
     }
 
+    public void sleep (int duration)
+    {
+        try {Thread.sleep(duration);}
+        catch (InterruptedException e) {System.out.println("Whoops something went wrong");}
+    }
     public static boolean isBasicQuestionsIncluded() {
         return basicQuestionsIncluded;
     }
