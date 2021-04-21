@@ -14,8 +14,8 @@ public class BasicQuestion implements Question
     {
         datatype = Type.getRandomType(); // picks a random datatype from TYPES array
         variableName = getRandomItem(Data.VARIABLE_NAMES); // picks a random variable name from VARIABLE_NAMES array
-        // picks a random value for the variable based on the datatype
-        switch (datatype)
+
+        switch (datatype) // picks a random value for the variable based on the datatype
         {
             case STRING:
                 value = getRandomItem(Data.STRING_VALUES);
@@ -34,11 +34,11 @@ public class BasicQuestion implements Question
                 value = String.valueOf(randomizer.nextBoolean());
                 break;
         }
-        if (randomizer.nextInt(100) <= 33) // 10% chance you will just declare the variable with no value
+        if (randomizer.nextInt(100) <= 33) // 33% chance the question has no value (e.g. int x;)
         {
             value = "";
         }
-        else if (randomizer.nextInt(100) <= 33) // if there is a value, 10% chance of there being no type (means you assign a value to an existing variable)
+        else if (randomizer.nextInt(100) <= 50) // overall 33% chance of there being no type (e.g. x = 1;)
         {
             datatype = null;
         }
@@ -52,60 +52,59 @@ public class BasicQuestion implements Question
     }
     public String generateAnswer()
     {
-        // chooses the question/answer type based on whether or not a value or type was given
+        String assignAndDefineAnswer = String.format("%s %s = %s;", datatype, variableName, value);
+        String assignText = String.format("%s = %s;", variableName, value);
+        String defineText = String.format("%s %s;", datatype, variableName);
+        // chooses which answer type based on whether the value or datatype exist
         if (value.isEmpty())
         {
-            answer = datatype + " " + variableName;
+            answer = defineText;
         }
         else if (datatype == null)
         {
-            answer =              variableName + " = " + value;
+            answer = assignText;
         }
         else
         {
-            answer = datatype + " " + variableName + " = " + value;
+            answer = assignAndDefineAnswer;
         }
-        answer += ";";
-
         return answer;
     }
     public String generateQuestion()
     {
-        // declare a variable called x and assign it the value 3
-        // You need a variable called name to hold the value Susan
         final String[] VERBS = {"Declare", "Define", "Create"};
         final String[] NOUNS = {"a variable", "an identifier"};
         final String[] IDENTIFIER = {"called", "named", "with the name","that's called", "that's named", "that has the name"};
         final String[] ASSIGN = {"set it to", "assign it the value", "give it the value", "set it equal to", "initialize it to"};
 
-        String verb = getRandomItem(VERBS); // "Declare", "Define", "Create"
-        String noun = getRandomItem(NOUNS); // "variable", "identifier"
-        String identifier = getRandomItem(IDENTIFIER); // "called", "named", etc.
-        String assign = getRandomItem(ASSIGN); // "set it to", "give it the value", etc.
+        String verb = getRandomItem(VERBS);
+        String noun = getRandomItem(NOUNS);
+        String identifier = getRandomItem(IDENTIFIER);
+        String assign = getRandomItem(ASSIGN);
 
         String assignAndDefineText = verb + " " + noun + " " + identifier + " " + variableName + " and " + assign + " " + value;
         String assignText = "Given a variable " + identifier + " " + variableName + ", " + assign + " " + value;
         String defineText = verb + " " + noun + " " + identifier + " " + variableName + ", to hold a" + (datatype == Type.INT ? "n " : " ")  + datatype;
 
         // chooses which question type to ask based on whether or not there is a type or value
-        if (value.length() > 0)
+        String question;
+        if (value.isEmpty())
         {
-            if (datatype != null)
-            {
-                return assignAndDefineText;
-            }
-            else
-            {
-                return assignText;
-            }
+            question = defineText;
+        }
+        else if (datatype == null)
+        {
+            question = assignText;
         }
         else
         {
-            return defineText;
+            question = assignAndDefineText;
         }
+        return question;
     }
     public String[] formatAnswer(String answer)
     {
+        // adds spaces around all important characters and returns the answer split into an array on spaces
         answer = answer.strip();
         String[] keySymbols = {"=", ";"};
         for (String symbol : keySymbols)

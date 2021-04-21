@@ -7,7 +7,7 @@ public class QuizConsole
 {
     public static void startQuiz(Quiz quiz)
     {
-        Instant startTime = Instant.now();
+        Instant startTime = Instant.now(); // start timer
         ArrayList<Question> listOfQuestions = quiz.getListOfQuestions();
         Scanner scan = new Scanner(System.in);
         int score = 0;
@@ -18,28 +18,25 @@ public class QuizConsole
             System.out.printf(("%d) %s: "),i + 1, question);
 
             String attempt = scan.nextLine();
-
-            if (compareAnswer(question, attempt))
+            String message = "Better luck next time!";
+            if (isAnswerCorrect(question, attempt))
             {
-                System.out.println("   Your answer was: " + attempt);
-                System.out.print(  "Correct answer was: " + question.getAnswer());
-                System.out.println("        Good job!\n");
+                message = "Good job!";
                 score++;
             }
-            else {
-                System.out.println("   Your answer was: " + attempt);
-                System.out.print("Correct answer was: " + question.getAnswer());
-                System.out.println("        Better luck next time!\n");
-            }
+            String answerResultText = String.format("   Your answer was: %s\nCorrect answer was: %s\t\t%s\n",
+                                                    attempt, question.getAnswer(),message);
+            System.out.println(answerResultText);
         }
         Instant endTime = Instant.now();
-        Duration timeElapsed = Duration.between(startTime, endTime);
-        System.out.println("You took " + timeElapsed.toMinutesPart() + " minutes and " + timeElapsed.toSecondsPart() +" seconds to complete the quiz");
-        System.out.println("Your final score was: " + score + "/" + listOfQuestions.size());
-        System.out.print("Press enter to go back to the menu...");
+        Duration timeElapsed = Duration.between(startTime, endTime); // end timer and calculate time taken
+        String quizResults = String.format("You took %s minutes and %s seconds to complete the quiz\nYour final score was: " +
+                                           "%s/%s\nPress enter to go back to the menu...", timeElapsed.toMinutesPart(),
+                                            timeElapsed.toSecondsPart(), score, listOfQuestions.size());
+        System.out.print(quizResults);
         scan.nextLine();
     }
-    public static boolean compareAnswer(Question question, String answerAttempt)
+    public static boolean isAnswerCorrect(Question question, String answerAttempt)
     {
         String[] answerAttemptArray = question.formatAnswer(answerAttempt);
         String[] correctAnswerArray = question.formatAnswer(question.getAnswer());

@@ -15,18 +15,12 @@ public class Menu
         clearConsole();
     // STEP 1: check for special cases
         checkIfPageIsMethod(pageID);
-        // If the page doesnt exist the user will be brought back to the screen they entered it from
+        // If the page doesn't exist the user will be brought back to the screen they entered it from
         if (Data.PAGES.get(pageID) == null)
         {
             System.out.println("Invalid option");
-            try
-            {
-                Thread.sleep(1000);
-            }
-            catch (InterruptedException e)
-            {
-                System.out.println("Whoops");
-            }
+            try { Thread.sleep(1000); }
+            catch (InterruptedException e) { System.out.println("Whoops"); }
             previousPage(pageID);
         }
     // STEP 2: display page
@@ -77,33 +71,12 @@ public class Menu
         }
         if (pageID.equals("1452"))
         {
-            if (arrayQuestionsIncluded || !basicQuestionsIncluded)
-            {
-                basicQuestionsIncluded = !basicQuestionsIncluded;
-                System.out.printf("Basic questions will %sbe included in your quiz", basicQuestionsIncluded ? "" : "not ");
-            }
-            else
-            {
-                System.out.println("You must included at least one type of questions in your quiz");
-            }
-            try {Thread.sleep(2500);}
-            catch (InterruptedException e) {System.out.println("Whoops something went wrong");}
+            toggleBasicQuestions();
             previousPage(pageID);
         }
         if (pageID.equals("1453"))
         {
-            if (!arrayQuestionsIncluded || basicQuestionsIncluded)
-            {
-                arrayQuestionsIncluded = !arrayQuestionsIncluded;
-                System.out.printf("Array questions will %sbe included in your quiz", arrayQuestionsIncluded ? "" : "not ");
-            }
-            else
-            {
-                System.out.println("You must included at least one type of question in your quiz");
-            }
-
-            try {Thread.sleep(2500);}
-            catch (InterruptedException e) {System.out.println("Whoops something went wrong");}
+            toggleArrayQuestions();
             previousPage(pageID);
         }
         if (pageID.equals("13"))
@@ -111,6 +84,35 @@ public class Menu
             printQuestionsToScreen();
             previousPage(pageID);
         }
+    }
+
+    private void toggleArrayQuestions() {
+        if (!arrayQuestionsIncluded || basicQuestionsIncluded)
+        {
+            arrayQuestionsIncluded = !arrayQuestionsIncluded;
+            System.out.printf("Array questions will %sbe included in your quiz", arrayQuestionsIncluded ? "" : "not ");
+        }
+        else
+        {
+            System.out.println("You must included at least one type of question in your quiz");
+        }
+
+        try {Thread.sleep(2500);}
+        catch (InterruptedException e) {System.out.println("Whoops something went wrong");}
+    }
+
+    private void toggleBasicQuestions() {
+        if (arrayQuestionsIncluded || !basicQuestionsIncluded)
+        {
+            basicQuestionsIncluded = !basicQuestionsIncluded;
+            System.out.printf("Basic questions will %sbe included in your quiz", basicQuestionsIncluded ? "" : "not ");
+        }
+        else
+        {
+            System.out.println("You must included at least one type of questions in your quiz");
+        }
+        try {Thread.sleep(2500);}
+        catch (InterruptedException e) {System.out.println("Whoops something went wrong");}
     }
 
     private void printAnswerKey()
@@ -142,7 +144,7 @@ public class Menu
         System.out.println("Press enter to return to menu...");
         new Scanner(System.in).nextLine();
     }
-    public void printQuizToFile()
+    private void printQuizToFile()
     {
         String filename = "quiz.txt";
         Quiz quiz = new Quiz(numOfQuestions);
@@ -192,7 +194,7 @@ public class Menu
             System.out.println("Whoops looks like something went wrong!");
         }
     }
-    public void promptForNumOfQuestions()
+    private void promptForNumOfQuestions()
     {
         Scanner scan = new Scanner(System.in);
         System.out.print("How many questions would you like?: ");

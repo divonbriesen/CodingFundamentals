@@ -10,19 +10,15 @@ public class Quiz
 
         public static QuestionType getRandomQuestionType()
         {
+            // returns a random QuestionType but checks first to see which types are enabled
             Random randomizer = new Random();
             ArrayList<QuestionType> questionTypes = new ArrayList<>();
-            if (Menu.isBasicQuestionsIncluded())
-            {
-                questionTypes.add(BASIC);
-            }
-            if (Menu.isArrayQuestionsIncluded())
-            {
-                questionTypes.add(ARRAY);
-            }
+
+            if (Menu.isBasicQuestionsIncluded()) questionTypes.add(BASIC);
+            if (Menu.isArrayQuestionsIncluded()) questionTypes.add(ARRAY);
+
             int questionTypeIndex = randomizer.nextInt(questionTypes.size());
             return questionTypes.get(questionTypeIndex);
-
         }
     }
     public Quiz(int numOfQuestions)
