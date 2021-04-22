@@ -17,12 +17,16 @@ public class QuizConsole
             Question question = listOfQuestions.get(i);
             System.out.printf(("%d) %s: "),i + 1, question);
 
-            String attempt = scan.nextLine();
-            String message = "Better luck next time!";
+            String attempt = scan.nextLine().trim();
+            String message;
             if (isAnswerCorrect(question, attempt))
             {
                 message = "Good job!";
                 score++;
+            }
+            else
+            {
+                message = "Better luck next time!";
             }
             String answerResultText = String.format("   Your answer was: %s\nCorrect answer was: %s\t\t%s\n",
                                                     attempt, question.getAnswer(),message);
