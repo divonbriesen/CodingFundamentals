@@ -13,7 +13,7 @@ public class BasicQuestion implements Question
     public BasicQuestion()
     {
         datatype = Type.getRandomType(); // picks a random datatype from TYPES array
-        variableName = getRandomItem(Data.VARIABLE_NAMES); // picks a random variable name from VARIABLE_NAMES array
+        variableName = getRandomItem(Data.BASIC_VARIABLE_NAMES); // picks a random variable name from VARIABLE_NAMES array
 
         switch (datatype) // picks a random value for the variable based on the datatype
         {

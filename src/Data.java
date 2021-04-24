@@ -5,9 +5,12 @@ public class Data
 //    public static final String[] NOUNS = {"a variable", "an identifier"};
 //    public static final String[] IDENTIFIER = {"called", "named", "with the name","that's called", "that's named", "that has the name"};
 //    public static final String[] ASSIGN = {"set it to", "assign it the value", "give it the value", "make it equal", "initialize it to"};
-    public static final String[] VARIABLE_NAMES = {"x", "y", "z", "a", "b", "c", "i", "j", "dog", "age", "height", "width", "length", "area",
+    public static final String[] BASIC_VARIABLE_NAMES = {"x", "y", "z", "a", "b", "c", "i", "j", "dog", "age", "height", "width", "length", "area",
                                                    "volume", "id", "aBoolean", "java", "aStudent", "gpa", "question", "quiz", "answer", "type",
                                                    "studentId", "myVar", "anInt", "aDouble", "aChar", "aString", "aLong", "aFloat", "aByte",};
+    public static final String[] ARRAY_VARIABLE_NAMES = {"x", "y", "z", "a", "b", "c", "names", "ages", "questions", "answers", "usernames",
+                                                         "booleanArray", "intArray", "doubleArray", "floatArray", "byteArray", "stringArray",
+                                                         "sArray", "cats", "dogs", "charArray", "letters", "grades", "results", "primes"};
     public static final String[] STRING_VALUES = {"\"cat\"", "\"dog\"", "\"true\"", "\"false\"", "\"23\"", "\"Bob\"", "\"Jane\"", "\"Jane\", \"Jill\", \"Jone\""};
     public static final String[] CHAR_VALUES = {"'a'", "'b'", "'c'", "'d'", "'e'", "'f'", "'g'", "'h'", "'i'", "'j'", "'k'", "'l'", "'m'",
                                                 "'n'", "'o'", "'p'", "'q'", "'r'", "'s'", "'t'", "'u'", "'v'", "'w'", "'x'", "'y'", "'z'",
@@ -26,4 +29,8 @@ public class Data
         PAGES.put("14",PAGE14);
         PAGES.put("145",PAGE145);
     }
+    public static final String[] ORDINAL_WORDS = {"first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth",
+                                                  "eleventh", "twelfth", "thirteenth", "fourteenth", "fifteenth", "sixteenth", "seventeenth",
+                                                  "eighteenth", "nineteenth", "twentieth", "twenty-first", "twenty-second", "twenty-third",
+                                                  "twenty-fourth", "twenty-fifth"};
 }

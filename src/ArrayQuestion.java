@@ -14,7 +14,7 @@ public class ArrayQuestion implements Question
     {
         numberOfElements = randomizer.nextInt(4) + 1; // picks random num of elements from 1-5
         datatype = Type.getRandomType(); // picks a random datatype from Type enum
-        variableName = getRandomItem(Data.VARIABLE_NAMES); // picks a random variable name from VARIABLE_NAMES array
+        variableName = getRandomItem(Data.ARRAY_VARIABLE_NAMES); // picks a random variable name from VARIABLE_NAMES array
 
         switch (datatype)  // picks a random value for the variable based on the datatype
         {
@@ -71,18 +71,26 @@ public class ArrayQuestion implements Question
     {
         // declare a variable called x and assign it the value 3
         // You need a variable called name to hold the value Susan
+        String ordinalWord = Data.ORDINAL_WORDS[numberOfElements];
+        String ordinalSuffix = ordinalWord.substring(ordinalWord.length() - 2);
+        String ordinalNumeral = numberOfElements + 1 + ordinalSuffix;
         final String[] VERBS = {"Declare", "Define", "Create"};
         final String[] IDENTIFIER = {"called", "named", "that's named", "with the name"};
         final String[] ASSIGN = {"assign it the value", "give it the value", "initialize it with the value"};
+
+        final String[] NUMBER = {String.format("the element at index %d", numberOfElements),
+                                 String.format("the %s element", Math.random() > .5 ? ordinalWord : ordinalNumeral)};
         String verb = getRandomItem(VERBS); // "Declare", "Define", "Create"
         String identifier = getRandomItem(IDENTIFIER); // "called", "named", etc.
         String assign = getRandomItem(ASSIGN); // "set it to", "give it the value", etc.
-
+        String number = getRandomItem(NUMBER);
         boolean plural = numberOfElements > 1;
-        String assignAndDefineText = verb + " an array " + identifier + " " + variableName + " and " + assign + (plural ? "s ": " ") + arrayValuesToPlainEnglish(values);
-        String assignText = "Given an array " + identifier + " " + variableName + ", " + assign.split(" ")[0] + " the element at index "
-                          + numberOfElements + " the value " + arrayValuesToPlainEnglish(values);
-        String defineText = verb + " an array " + identifier + " " + variableName + ", to hold " + numberOfElements  + " " + datatype + (plural ? "s ": "");
+        String assignAndDefineText = verb + " an array " + identifier + " " + variableName + " and " + assign +
+                                            (plural ? "s ": " ") + arrayValuesToPlainEnglish(values);
+        String assignText = "Given an array " + identifier + " " + variableName + ", " + assign.split(" ")[0]
+                            + " " + number + " the value " + arrayValuesToPlainEnglish(values);
+        String defineText = verb + " an array " + identifier + " " + variableName + ", to hold " + numberOfElements
+                            + " " + datatype + (plural ? "s ": "");
         // chooses which question type to ask based on whether or not there is a type or value
         String question;
         if (values.length == 0)
