@@ -6,7 +6,8 @@ public class Quiz
     private enum QuestionType
     {
         BASIC,
-        ARRAY;
+        ARRAY,
+        BOOLEAN;
 
         public static QuestionType getRandomQuestionType()
         {
@@ -16,6 +17,7 @@ public class Quiz
 
             if (Menu.isBasicQuestionsIncluded()) questionTypes.add(BASIC);
             if (Menu.isArrayQuestionsIncluded()) questionTypes.add(ARRAY);
+            questionTypes.add(BOOLEAN);
 
             int questionTypeIndex = randomizer.nextInt(questionTypes.size());
             return questionTypes.get(questionTypeIndex);
@@ -40,6 +42,9 @@ public class Quiz
                     break;
                 case ARRAY:
                     question = new ArrayQuestion();
+                    break;
+                case BOOLEAN:
+                    question = new BooleanQuestion();
                     break;
                 default:
                     question = new BasicQuestion();
