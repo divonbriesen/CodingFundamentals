@@ -44,7 +44,7 @@ public class Quiz
                     question = new ArrayQuestion();
                     break;
                 case BOOLEAN:
-                    question = new BooleanExpression();
+                    question = new BooleanComparisonExpression();
                     break;
                 default:
                     question = new BasicQuestion();
