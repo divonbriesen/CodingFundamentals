@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class BasicQuestion implements Question
+public class BasicQuestion extends Question
 {
     private Type datatype;
     private String variableName;
@@ -12,16 +12,17 @@ public class BasicQuestion implements Question
 
     public BasicQuestion()
     {
-        datatype = Type.getRandomType(); // picks a random datatype from TYPES array
-        variableName = getRandomItem(Data.BASIC_VARIABLE_NAMES); // picks a random variable name from VARIABLE_NAMES array
+        super();
+        datatype = Data.getRandomItem(Type.values()); // picks a random datatype from TYPES array
+        variableName = Data.getRandomItem(Data.BASIC_VARIABLE_NAMES); // picks a random variable name from VARIABLE_NAMES array
 
         switch (datatype) // picks a random value for the variable based on the datatype
         {
             case STRING:
-                value = getRandomItem(Data.STRING_VALUES);
+                value = Data.getRandomItem(Data.STRING_VALUES);
                 break;
             case CHAR:
-                value = getRandomItem(Data.CHAR_VALUES);
+                value = Data.getRandomItem(Data.CHAR_VALUES);
                 break;
             case INT:
                 value = String.valueOf(randomizer.nextInt(1998) - 999);
@@ -44,11 +45,7 @@ public class BasicQuestion implements Question
         }
         answer = generateAnswer();
         question = generateQuestion();
-    }
-    public String getRandomItem(String[] arrayOfStrings)
-    {
-        int indexOfRandomItem = randomizer.nextInt(arrayOfStrings.length);
-        return arrayOfStrings[indexOfRandomItem];
+        super.setQuestion(question, answer);
     }
     public String generateAnswer()
     {
@@ -77,10 +74,10 @@ public class BasicQuestion implements Question
         final String[] IDENTIFIER = {"called", "named", "with the name","that's called", "that's named", "that has the name"};
         final String[] ASSIGN = {"set it to", "assign it the value", "give it the value", "set it equal to", "initialize it to"};
 
-        String verb = getRandomItem(VERBS);
-        String noun = getRandomItem(NOUNS);
-        String identifier = getRandomItem(IDENTIFIER);
-        String assign = getRandomItem(ASSIGN);
+        String verb = Data.getRandomItem(VERBS);
+        String noun = Data.getRandomItem(NOUNS);
+        String identifier = Data.getRandomItem(IDENTIFIER);
+        String assign = Data.getRandomItem(ASSIGN);
 
         String assignAndDefineText = verb + " " + noun + " " + identifier + " " + variableName + " and " + assign + " " + value;
         String assignText = "Given a variable " + identifier + " " + variableName + ", " + assign + " " + value;
@@ -116,13 +113,5 @@ public class BasicQuestion implements Question
             }
         }
         return answer.split("\\s+");
-    }
-    public String getAnswer()
-    {
-        return answer;
-    }
-    public String toString()
-    {
-        return question;
     }
 } // end of class

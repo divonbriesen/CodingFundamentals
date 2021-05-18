@@ -1,10 +1,7 @@
 import java.util.HashMap;
+import java.util.Random;
 public class Data
 {
-//    public static final String[] VERBS = {"Declare", "Define", "Create"};
-//    public static final String[] NOUNS = {"a variable", "an identifier"};
-//    public static final String[] IDENTIFIER = {"called", "named", "with the name","that's called", "that's named", "that has the name"};
-//    public static final String[] ASSIGN = {"set it to", "assign it the value", "give it the value", "make it equal", "initialize it to"};
     public static final String[] BASIC_VARIABLE_NAMES = {"x", "y", "z", "a", "b", "c", "i", "j", "dog", "age", "height", "width", "length", "area",
                                                    "volume", "id", "aBoolean", "java", "aStudent", "gpa", "question", "quiz", "answer", "type",
                                                    "studentId", "myVar", "anInt", "aDouble", "aChar", "aString", "aLong", "aFloat", "aByte",};
@@ -33,4 +30,11 @@ public class Data
                                                   "eleventh", "twelfth", "thirteenth", "fourteenth", "fifteenth", "sixteenth", "seventeenth",
                                                   "eighteenth", "nineteenth", "twentieth", "twenty-first", "twenty-second", "twenty-third",
                                                   "twenty-fourth", "twenty-fifth"};
+
+    public static <T> T getRandomItem(T[] arrayOfStrings)
+    {
+        Random randomizer = new Random();
+        int indexOfRandomItem = randomizer.nextInt(arrayOfStrings.length);
+        return arrayOfStrings[indexOfRandomItem];
+    }
 }

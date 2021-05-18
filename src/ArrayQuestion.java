@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class ArrayQuestion implements Question
+public class ArrayQuestion extends Question
 {
     private Type datatype;
     private String variableName;
@@ -13,8 +13,8 @@ public class ArrayQuestion implements Question
     public ArrayQuestion()
     {
         numberOfElements = randomizer.nextInt(4) + 1; // picks random num of elements from 1-5
-        datatype = Type.getRandomType(); // picks a random datatype from Type enum
-        variableName = getRandomItem(Data.ARRAY_VARIABLE_NAMES); // picks a random variable name from VARIABLE_NAMES array
+        datatype = Data.getRandomItem(Type.values()); // picks a random datatype from Type enum
+        variableName = Data.getRandomItem(Data.ARRAY_VARIABLE_NAMES); // picks a random variable name from VARIABLE_NAMES array
 
         switch (datatype)  // picks a random value for the variable based on the datatype
         {
@@ -49,6 +49,7 @@ public class ArrayQuestion implements Question
         }
         answer = generateAnswer();
         question = generateQuestion();
+        super.setQuestion(question, answer);
    }
    public String generateAnswer()
     {
@@ -80,10 +81,10 @@ public class ArrayQuestion implements Question
 
         final String[] NUMBER = {String.format("the element at index %d", numberOfElements),
                                  String.format("the %s element", Math.random() > .5 ? ordinalWord : ordinalNumeral)};
-        String verb = getRandomItem(VERBS); // "Declare", "Define", "Create"
-        String identifier = getRandomItem(IDENTIFIER); // "called", "named", etc.
-        String assign = getRandomItem(ASSIGN); // "set it to", "give it the value", etc.
-        String number = getRandomItem(NUMBER);
+        String verb = Data.getRandomItem(VERBS); // "Declare", "Define", "Create"
+        String identifier = Data.getRandomItem(IDENTIFIER); // "called", "named", etc.
+        String assign = Data.getRandomItem(ASSIGN); // "set it to", "give it the value", etc.
+        String number = Data.getRandomItem(NUMBER);
         boolean plural = numberOfElements > 1;
         String assignAndDefineText = verb + " an array " + identifier + " " + variableName + " and " + assign +
                                             (plural ? "s ": " ") + arrayValuesToPlainEnglish(values);
@@ -112,15 +113,10 @@ public class ArrayQuestion implements Question
         String[] randomElements = new String[numberOfElements];
         for (int i = 0; i < numberOfElements; i++)
         {
-            randomElements[i] = getRandomItem(arrayOfStrings);
+            randomElements[i] = Data.getRandomItem(arrayOfStrings);
         }
         return randomElements;
      }
-    public String getRandomItem(String[] arrayOfStrings)
-    {
-        int indexOfRandomItem = randomizer.nextInt(arrayOfStrings.length);
-        return arrayOfStrings[indexOfRandomItem];
-    }
     public String[] generateRandomIntArray()
     {
         String[] randomArray = new String[numberOfElements];
@@ -199,13 +195,5 @@ public class ArrayQuestion implements Question
         String result = stringBuilder.toString();
         result = result.substring(0, result.length() - 2);
         return result;
-    }
-    public String getAnswer()
-    {
-        return answer;
-    }
-    public String toString()
-    {
-       return question;
     }
 }

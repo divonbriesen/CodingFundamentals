@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class BooleanQuestion implements Question
+public class BooleanExpression extends Question
 {
 
     private String question;
@@ -10,15 +10,18 @@ public class BooleanQuestion implements Question
     private String comparison;
     private Random randomizer = new Random();
 
-    public BooleanQuestion()
+    public BooleanExpression()
     {
+        super();
         final String[] COMPARISON_OPERATORS = {"==", "!=", "<", ">", "<=", ">="};
         value1 = randomizer.nextInt(500);
         value2 = value1 + (randomizer.nextInt(20) - 10);
-        comparison = getRandomItem(COMPARISON_OPERATORS);
+        comparison = Data.getRandomItem(COMPARISON_OPERATORS);
 
         question = generateQuestion();
         answer = generateAnswer();
+        super.setQuestion(question, answer);
+
     }
 
     public String generateAnswer()
@@ -58,20 +61,6 @@ public class BooleanQuestion implements Question
     public String[] formatAnswer(String answer)
     {
         return new String[0];
-    }
-
-    public String getRandomItem(String[] arrayOfStrings)
-    {
-        int indexOfRandomItem = randomizer.nextInt(arrayOfStrings.length);
-        return arrayOfStrings[indexOfRandomItem];
-    }
-    public String getAnswer()
-    {
-        return answer;
-    }
-    public String toString()
-    {
-        return question;
     }
 }
 
