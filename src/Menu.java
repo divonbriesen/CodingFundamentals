@@ -208,7 +208,7 @@ public class Menu
             }
             numOfQuestions = scan.nextInt();
             isInvalid = true;
-        } while (numOfQuestions < 0 || numOfQuestions > 100);
+        } while (numOfQuestions <= 0 || numOfQuestions > 100);
     }
     public void clearConsole()
     {

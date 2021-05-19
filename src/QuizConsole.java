@@ -34,9 +34,11 @@ public class QuizConsole
         }
         Instant endTime = Instant.now();
         Duration timeElapsed = Duration.between(startTime, endTime); // end timer and calculate time taken
-        String quizResults = String.format("You took %s minutes and %s seconds to complete the quiz\nYour final score was: " +
-                                           "%s/%s\nPress enter to go back to the menu...", timeElapsed.toMinutesPart(),
-                                            timeElapsed.toSecondsPart(), score, listOfQuestions.size());
+        boolean areMinutesPlural = timeElapsed.toMinutesPart() != 1;
+        boolean areSecondsPlural = timeElapsed.toSecondsPart() != 1;
+        String quizResults = String.format("You took %s minute%s and %s second%s to complete the quiz\nYour final score was: " +
+                                           "%s/%s\nPress enter to go back to the menu...", timeElapsed.toMinutesPart(), areMinutesPlural ? "s" : "",
+                                            timeElapsed.toSecondsPart(), areSecondsPlural ? "s" : "", score, listOfQuestions.size());
         System.out.print(quizResults);
         scan.nextLine();
     }

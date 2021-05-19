@@ -7,7 +7,9 @@ public class Quiz
     {
         BASIC,
         ARRAY,
-        BOOLEAN;
+        BOOLEAN_EXPRESSION,
+        BOOLEAN_COMPARISON,
+        COMPOUND_EXPRESSION;
 
         public static QuestionType getRandomQuestionType()
         {
@@ -17,7 +19,9 @@ public class Quiz
 
             if (Menu.isBasicQuestionsIncluded()) questionTypes.add(BASIC);
             if (Menu.isArrayQuestionsIncluded()) questionTypes.add(ARRAY);
-            questionTypes.add(BOOLEAN);
+            questionTypes.add(BOOLEAN_COMPARISON);
+            questionTypes.add(BOOLEAN_EXPRESSION);
+            questionTypes.add(COMPOUND_EXPRESSION);
 
             int questionTypeIndex = randomizer.nextInt(questionTypes.size());
             return questionTypes.get(questionTypeIndex);
@@ -43,8 +47,14 @@ public class Quiz
                 case ARRAY:
                     question = new ArrayQuestion();
                     break;
-                case BOOLEAN:
-                    question = new BooleanComparisonExpression();
+                case BOOLEAN_EXPRESSION:
+                    question = new BooleanExpressionQuestion();
+                    break;
+                case BOOLEAN_COMPARISON:
+                    question = new BooleanComparisonQuestion();
+                    break;
+                case COMPOUND_EXPRESSION:
+                    question = new CompoundExpressionQuestion();
                     break;
                 default:
                     question = new BasicQuestion();

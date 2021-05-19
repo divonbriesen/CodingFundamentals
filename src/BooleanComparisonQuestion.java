@@ -1,16 +1,16 @@
 import java.util.Random;
 
-public class BooleanComparisonExpression extends Question
+public class BooleanComparisonQuestion extends Question
 {
 
     private String question;
     private String answer;
-    int value1;
-    int value2;
+    private int value1;
+    private int value2;
     private String comparison;
     private Random randomizer = new Random();
 
-    public BooleanComparisonExpression()
+    public BooleanComparisonQuestion()
     {
         super();
         final String[] COMPARISON_OPERATORS = {"==", "!=", "<", ">", "<=", ">="};
@@ -54,8 +54,7 @@ public class BooleanComparisonExpression extends Question
     }
     public String generateQuestion()
     {
-        String question = String.format("What does the following expression evaluate to?\n%s %s %s", value1, comparison, value2);
-        return question;
+        return String.format("What does the following expression evaluate to?\n%s %s %s", value1, comparison, value2);
     }
 
     public String[] formatAnswer(String answer)
