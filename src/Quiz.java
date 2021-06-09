@@ -53,9 +53,9 @@ public class Quiz
                 case BOOLEAN_COMPARISON:
                     question = new BooleanComparisonQuestion();
                     break;
-                case COMPOUND_EXPRESSION:
-                    question = new CompoundExpressionQuestion();
-                    break;
+//                case COMPOUND_EXPRESSION:
+//                    question = new CompoundExpressionQuestion();
+//                    break;
                 default:
                     question = new BasicQuestion();
                     System.out.println("Error");
